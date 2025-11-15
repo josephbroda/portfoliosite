@@ -2,169 +2,42 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <title>IT Portfolio - Joseph Broda</title>
-    <meta name="viewport" content="width=device-width, initial-scale=1">
-    <link rel="stylesheet" href="/css/style.css">
-    <style>
-        body {
-            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-            background: #fff;
-            color: #222;
-            margin: 0;
-            padding: 0;
-        }
-        nav {
-            background: #24292e;
-            padding: 0 2rem;
-        }
-        nav ul {
-            margin: 0;
-            padding: 0;
-            list-style: none;
-            display: flex;
-        }
-        nav li {
-            margin: 0 1rem 0 0;
-        }
-        nav a {
-            color: #fff;
-            text-decoration: none;
-            display: block;
-            padding: 1.25rem 1rem;
-            transition: background 0.2s;
-        }
-        nav a:hover {
-            background: #0366d6;
-        }
-        .container {
-            max-width: 900px;
-            margin: 2rem auto;
-            padding: 2rem;
-            background: #fafbfc;
-            border-radius: 8px;
-            box-shadow: 0 0 8px #eaeaea;
-        }
-        h1, h2, h3 {
-            color: #24292e;
-        }
-        .card-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(270px, 1fr));
-            gap: 1.5rem;
-            margin: 2rem 0;
-        }
-        .project-card {
-            background: #fff;
-            border: 1px solid #e1e4e8;
-            border-radius: 6px;
-            padding: 1.25rem;
-            text-align: left;
-            box-shadow: 0 1px 2px #eef1f5;
-            transition: transform 0.1s;
-        }
-        .project-card:hover {
-            transform: translateY(-3px) scale(1.04);
-            border-color: #0366d6;
-        }
-        .card-title {
-            font-size: 1.1rem;
-            font-weight: 600;
-            margin-bottom: 0.5rem;
-            color: #0366d6;
-        }
-        .card-meta {
-            font-size: 0.95rem;
-            color: #586069;
-            margin-bottom: 0.4rem;
-        }
-        .skills-list, .cert-list {
-            display: flex;
-            flex-wrap: wrap;
-            gap: 0.5rem 1.5rem;
-            margin: 1rem 0 0 0;
-            padding: 0;
-            list-style: none;
-        }
-        .skills-list li, .cert-list li {
-            background: #eaf5ff;
-            border-radius: 3px;
-            padding: 0.3rem 0.8rem;
-            font-size: 0.98rem;
-        }
-        .btn {
-            display: inline-block;
-            padding: 0.5rem 1rem;
-            color: #fff;
-            background: #0366d6;
-            border: none;
-            border-radius: 4px;
-            text-decoration: none;
-            font-weight: 600;
-            transition: background 0.2s;
-        }
-        .btn:hover { background: #0056b3; }
-        @media (max-width: 650px) {
-            .container { padding: 1rem; }
-            nav ul { flex-direction: column; }
-        }
-    </style>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Joseph Broda - Portfolio</title>
+    <link rel="stylesheet" href="styles.css">
 </head>
 <body>
-    <nav>
-        <ul>
-            <li><a href="/index.html">Home / About</a></li>
-            <li><a href="/projects/">Projects / Portfolio</a></li>
-            <li><a href="/skills.html">Skills / Certifications</a></li>
-            <li><a href="/resume.html">Resume / Contact</a></li>
-        </ul>
-    </nav>
-    <div class="container">
-        <!-- Home / About Section -->
-        <h1>Hello, I’m Joseph</h1>
-        <p>
-           insert intro here
-        </p>
-        <h2>Technologies</h2>
-        <ul class="skills-list">
-            <!--<li>Windows Server 2019/2022</li>
-            //<li>Active Directory</li>
-           // <li>Hyper-V</li>
-           // <li>Group Policy (GPO)</li>
-            //<li>PowerShell</li>
-           // <li>Linux (basic admin)</li>
-           // <li>Sysinternals, RDP</li>
-            //<li>Network troubleshooting</li> -->
-        </ul>
-        <hr style="margin:2.5rem 0">
-
-        <!-- Projects / Portfolio Preview -->
-        <h2>Featured Projects</h2>
-        <div class="card-grid">
-            <!-- Example project card; link to full project page -->
-            <a href="/projects/joecorp-homelab.html" class="project-card">
-                <div class="card-title">JoeCorp Homelab: On-Prem Windows Domain & GPO Implementation</div>
-                <div class="card-meta">Windows Server, AD, Hyper-V, GPOs</div>
-                <div>A lab simulating enterprise Active Directory deployment with Group Policy management and Windows 11 clients.</div>
-            </a>
-            <!-- Add more cards as needed -->
+    <nav class="nav-bar">
+        <div class="nav-container">
+            <a href="index.html" class="nav-logo">Joseph Broda</a>
+            <ul class="nav-links">
+                <li><a href="index.html" class="active">Home</a></li>
+                <li><a href="projects.html">Projects</a></li>
+            </ul>
         </div>
-        <a href="/projects/" class="btn">View All Projects</a>
-        <hr style="margin:2.5rem 0">
+    </nav>
 
-        <!-- Skills / Certifications -->
-        <h2>Skills & Certifications</h2>
-        <ul class="cert-list">
-            <li>CompTIA A+</li>
-            <li>CompTIA Network+</li>
-            <li>CompTIA Security+</li>
-            <li>AI Ops (planned)</li>
-        </ul>
+    <main>
+        <section class="hero">
+            <h1>Joseph Broda Name</h1>
+            <p class="subtitle">Add your introduction here</p>
+        </section>
 
-        <!-- Resume / Contact -->
-        <h2>Resume & Contact</h2>
-        <a href="/assets/yourname_resume.pdf" class="btn" target="_blank">Download Resume (PDF)</a>
-        <p>Email: <a href="mailto:youremail@example.com">youremail@example.com</a></p>
-        <!-- Optional: Embed a simple contact form if needed -->
-    </div>
+        <section class="latest-project">
+            <h2>Latest Project</h2>
+            <div class="project-card featured">
+                <div class="project-image-placeholder"></div>
+                <div class="project-content">
+                    <h3>Project Title</h3>
+                    <p>Add your project description here</p>
+                    <a href="#" class="btn-primary">View Project</a>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <footer>
+        <p>&copy; 2025 Joseph Broda</p>
+    </footer>
 </body>
 </html>
