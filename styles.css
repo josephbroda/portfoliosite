@@ -15,7 +15,7 @@ body {
         #fbfbfd 75%,
         #fbfbfd 100%
     );
-    background-attachment: fixed;
+    /*background-attachment: fixed; */
     min-height: 100vh;
 }
 
