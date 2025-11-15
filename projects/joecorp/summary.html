@@ -1,0 +1,175 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>JoeCorp - Summary</title>
+    <link rel="stylesheet" href="../../styles.css">
+    <style>
+        /* Option 1: Card-Based Layout with Visual Separation */
+        .project-details {
+            max-width: 900px;
+            margin: 0 auto;
+            padding: 2rem;
+        }
+
+        .section-card {
+            background: #ffffff;
+            border-radius: 12px;
+            padding: 2rem;
+            margin-bottom: 2rem;
+            box-shadow: 0 2px 8px rgba(0, 0, 0, 0.06);
+        }
+
+        .section-card h2 {
+            font-size: 1.5rem;
+            margin-bottom: 1rem;
+            color: #1d1d1f;
+            border-bottom: 2px solid #f5f5f7;
+            padding-bottom: 0.5rem;
+        }
+
+        .section-card h3 {
+            font-size: 1.2rem;
+            margin-top: 1.5rem;
+            margin-bottom: 0.75rem;
+            color: #0071e3;
+        }
+
+        .section-card ul {
+            list-style: none;
+            padding-left: 0;
+        }
+
+        .section-card li {
+            padding: 0.5rem 0;
+            padding-left: 1.5rem;
+            position: relative;
+        }
+
+        .section-card li:before {
+            content: "→";
+            position: absolute;
+            left: 0;
+            color: #0071e3;
+            font-weight: bold;
+        }
+
+        .highlight-box {
+            background: #f5f5f7;
+            border-left: 4px solid #0071e3;
+            padding: 1rem 1.5rem;
+            margin: 1rem 0;
+            border-radius: 4px;
+        }
+
+        .tech-tag {
+            display: inline-block;
+            background: #e8f4fd;
+            color: #0071e3;
+            padding: 0.25rem 0.75rem;
+            border-radius: 12px;
+            font-size: 0.85rem;
+            margin-right: 0.5rem;
+            margin-bottom: 0.5rem;
+        }
+
+        .next-button-container {
+            text-align: center;
+            margin: 3rem 0 2rem;
+        }
+
+        .btn-next {
+            display: inline-flex;
+            align-items: center;
+            gap: 0.5rem;
+            background: #0071e3;
+            color: #ffffff;
+            padding: 1rem 2rem;
+            border-radius: 980px;
+            text-decoration: none;
+            font-weight: 500;
+            font-size: 1rem;
+            transition: all 0.3s ease;
+            box-shadow: 0 4px 12px rgba(0, 113, 227, 0.2);
+        }
+
+        .btn-next:hover {
+            background: #0077ed;
+            transform: translateY(-2px);
+            box-shadow: 0 6px 16px rgba(0, 113, 227, 0.3);
+        }
+
+        .btn-next:after {
+            content: "→";
+            font-size: 1.2rem;
+        }
+    </style>
+</head>
+<body>
+    <nav class="nav-bar">
+        <div class="nav-container">
+            <a href="../index.html" class="nav-logo">Projects</a>
+            <ul class="nav-links">
+                <li><a href="../../index.html">Home</a></li>
+                <li><a href="../../projects.html" class="active">Projects</a></li>
+                <li><a href="../../resume.html">Resume</a></li>
+
+            </ul>
+        </div>
+    </nav>
+
+    <main>
+        <section class="projects-header">
+            <h1>JoeCorp</h1>
+            <p>A self-guided exploration into on-premises Windows administration, modeled after a medium-sized business.</p>
+        </section>
+
+        <section class="project-details">
+            <div class="section-card">
+                <h2>Infrastructure Overview</h2>
+                <p>The virtual environment utilizes Windows Server 2025 and Windows 11 Enterprise clients, representing a modern enterprise setup.</p>
+
+                <h3>Domain Controllers (DC01 & DC02)</h3>
+                <p>Deployed as redundant, high-availability Domain Controllers using Server Core for reduced attack surface and lower resource consumption.</p>
+                <div class="highlight-box">
+                    <strong>Server Core Configuration:</strong> IP addresses (10.0.0.1 and 10.0.0.2) configured via PowerShell, with primary/secondary DNS servers pointing to peer DC and loopback for replication integrity.
+                </div>
+
+                <h3>Dedicated GUI Server (SRV01)</h3>
+                <p>Utilizes Desktop Experience (10.0.0.3) to host edge-case applications and provide management GUI. Hosts centralized file share for user profiles and home directories.</p>
+            </div>
+
+            <div class="section-card">
+                <h2>Core Accomplishments</h2>
+                <ul>
+                    <li>Active Directory (AD) Deployment: Multi-DC replicated AD forest (joecorp.local)</li>
+                    <li>Redundancy and Verification: Confirmed AD replication using repadmin /replsummary</li>
+                    <li>User Experience Management: Implemented roaming profiles and home folders on SRV01</li>
+                    <li>Security Segmentation: Created distinct OUs with role-based GPOs</li>
+                </ul>
+            </div>
+
+            <div class="section-card">
+                <h2>Technologies & Skills</h2>
+                <div>
+                    <span class="tech-tag">Active Directory</span>
+                    <span class="tech-tag">PowerShell</span>
+                    <span class="tech-tag">Group Policy</span>
+                    <span class="tech-tag">Hyper-V</span>
+                    <span class="tech-tag">Windows Server 2025</span>
+                    <span class="tech-tag">Server Core</span>
+                </div>
+            </div>
+
+            <div class="next-button-container">
+                <a href="details.html" class="btn-next">Initial Deployment</a>
+            </div>
+        </section>
+    </main>
+
+    <footer>
+        <p>&copy; 2025 Joseph Broda</p>
+    </footer>
+</body>
+</html>
