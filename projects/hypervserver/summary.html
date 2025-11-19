@@ -129,15 +129,14 @@
             <div class="section-card">
             <h2>Overview</h2>
             <p>This site will outline the steps I took to bring this server online; from rationale, to software deployment and management.</p>
-            </div>
-            <div class="section-card">
-                <h2>The Problem</h2>
+ <br>
+                <h3>The Problem</h3>
                 <p>The catalyst for this project came to be due to the hassle of running Hyper-V on my PC. Sure, performance was stellar, but having to constantly spin up my entire lab only to shut it all down again later was killing my motivation. Being in a cramped dorm, I can't just leave my PC on 24/7 due to the excessive heat it produces, and restarting my VMs whenever I wanted to do anything meant I never got to work on long-term administration projects.</p>
                 <br>
-                <h2>The Objective</h2>
+                <h3>The Objective</h3>
                 <p>My primary goal was simple: get these VMs off my desktop and onto an off-site, dedicated server thats up 24/7. This meant building a server that was reliable, efficient, and compact enough to not get in the way. Critically, I wanted to avoid investing in expensive, cutting-edge platforms, especially when I already had many of the components I'd need to get this project off the ground.</p>
                 <br>
-                <h2>The Solution</h2>
+                <h3>The Solution</h3>
                 <p>This project quickly evolved from a simple idea into a tangible solution via combination of already collected hardware, serendipudious deals, and a strategic partnership with my parents to make use of underutilized infrastructure.</p>
                 <br>
                 <p>This led to my final decision: The 16-core Ryzen 9 3950x and known-stable ASRock B550 motherboard I had lying around would make the perfect platform for this project. Since my goal is upmost reliability, used enterprise unbuffered ECC memory in 4x16GB DIMM capacity was a solid investment and even cheaper than the equivalent consumer DDR4 DIMMs at the time of purchase. Storage is handled by an NVMe SSD for the OS, three 1TB NAS-optimized SATA SSDs in Storage Spaces Parity for space-efficient redundancy for my VMs, and two 4TB hard drives in Storage Spaces Mirroed for backups. Finally, the greatest logistical hurdle, remote management, was solved by deploying a JetKVM connected via Tailscale to ensure secure, Out-of-Band (OBB) management access to the system's UEFI and power controls remotely.</p>
@@ -150,8 +149,8 @@
                 <h3>Dedicated GUI Server (SRV01)</h3>
                 <p>Utilizes Desktop Experience (10.0.0.3) to host edge-case applications and provide management GUI. Hosts centralized file share for user profiles and home directories.</p>
             </div> -->
-            </div>
-            <br>
+
+        </div>
             <div class="section-card">
                 <h2>Core Accomplishments</h2>
                 <ul>
