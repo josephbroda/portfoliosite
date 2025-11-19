@@ -1,0 +1,187 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Cost Efficient Hyper-V Server - Summary</title>
+    <link rel="stylesheet" href="../../styles.css">
+    <style>
+        /* Option 1: Card-Based Layout with Visual Separation */
+        .project-details {
+            max-width: 1500px;
+            margin: 0 auto;
+            padding: 2rem;
+        }
+
+        .section-card {
+            background: #ffffff;
+            border-radius: 12px;
+            padding: 2rem;
+            margin-bottom: 2rem;
+            box-shadow: 0 2px 8px rgba(0, 0, 0, 0.06);
+        }
+
+        .section-card h2 {
+            font-size: 1.5rem;
+            margin-bottom: 1rem;
+            color: #1d1d1f;
+            border-bottom: 2px solid #f5f5f7;
+            padding-bottom: 0.5rem;
+        }
+
+        .section-card h3 {
+            font-size: 1.2rem;
+            margin-top: 1.5rem;
+            margin-bottom: 0.75rem;
+            color: #0071e3;
+        }
+
+        .section-card ul {
+            list-style: none;
+            padding-left: 0;
+        }
+
+        .section-card li {
+            padding: 0.5rem 0;
+            padding-left: 1.5rem;
+            position: relative;
+        }
+
+        .section-card li:before {
+            content: "→";
+            position: absolute;
+            left: 0;
+            color: #0071e3;
+            font-weight: bold;
+        }
+
+        .highlight-box {
+            background: #f5f5f7;
+            border-left: 4px solid #0071e3;
+            padding: 1rem 1.5rem;
+            margin: 1rem 0;
+            border-radius: 4px;
+        }
+
+        .tech-tag {
+            display: inline-block;
+            background: #e8f4fd;
+            color: #0071e3;
+            padding: 0.25rem 0.75rem;
+            border-radius: 12px;
+            font-size: 0.85rem;
+            margin-right: 0.5rem;
+            margin-bottom: 0.5rem;
+        }
+
+        .next-button-container {
+            text-align: center;
+            margin: 3rem 0 2rem;
+        }
+
+        .btn-next {
+            display: inline-flex;
+            align-items: center;
+            gap: 0.5rem;
+            background: #0071e3;
+            color: #ffffff;
+            padding: 1rem 2rem;
+            border-radius: 980px;
+            text-decoration: none;
+            font-weight: 500;
+            font-size: 1rem;
+            transition: all 0.3s ease;
+            box-shadow: 0 4px 12px rgba(0, 113, 227, 0.2);
+        }
+
+        .btn-next:hover {
+            background: #0077ed;
+            transform: translateY(-2px);
+            box-shadow: 0 6px 16px rgba(0, 113, 227, 0.3);
+        }
+
+        .btn-next:after {
+            content: "→";
+            font-size: 1.2rem;
+        }
+    </style>
+</head>
+<body>
+    <nav class="nav-bar">
+        <div class="nav-container">
+            <a href="../../index.html" class="nav-logo">Projects</a>
+            <ul class="nav-links">
+                <li><a href="../../index.html">Home</a></li>
+                <li><a href="../../projects.html" class="active">Projects</a></li>
+                <li><a href="../../resume.html">Resume</a></li>
+
+            </ul>
+        </div>
+    </nav>
+
+    <main>
+        <section class="projects-header">
+            <h1>Remote Hyper-V Server</h1>
+            <p>A low cost virtualization platform built on reliability, strategic resource optimization, and out of band management.</p>
+        </section>
+
+        <section class="project-details">
+            <div class="section-card">
+            <h2>Overview</h2>
+            <p>This site will outline the steps I took to bring this server online; from rationale, software deployment, and remote management.</p>
+            </div>
+            <div class="section-card">
+                <h2>The Problem</h2>
+                <p>The catalyst for this project came to be due to the hassle of running Hyper-V on my PC. Sure, performance was stellar, but having to constantly spin up my entire lab only to shut it all down again later was killing my motivation. Being in a cramped dorm, I can't just leave my PC on 24/7 due to the excessive heat it produces, and restarting my VMs whenever I wanted to do anything meant I never got to work on long-term administration projects.</p>
+                <br>
+                <h2>The Objective</h2>
+                <p>My primary goal was simple: get these VMs off my desktop and onto an off-site, dedicated server thats up 24/7. This meant building a server that was reliable, efficient, and compact enough to not get in the way. Critically, I wanted to avoid investing in expensive, cutting-edge platforms, especially when I already had many of the components I'd need to get this project off the ground lying around.</p>
+                <br>
+                <h2>The Solution</h2>
+                <p>This project quickly evolved from a simple idea into a tangible solution via combination of already collected hardware, serendipudious deals, and a strategic partnership with my parents to make use of underutilized infrastructure.</p>
+                <br>
+                <p>This led to my final decision: The 16-core Ryzen 9 3950x and known-stable ASRock B550 motherboard I had lying around would make the perfect platform for this project. Since my goal is upmost reliability, used enterprise unbuffered ECC memory in 4x16GB DIMM capacity was a solid investment, and even cheaper than the equivalent consumer DDR4 DIMMs at the time of purchase. Storage is handled by an NVMe SSD for the OS, three 1TB NAS-optimized SATA SSDs in Storage Spaces Parity for space-efficient redundancy for my VMs, and two 4TB hard drives in Storage Spaces Mirroed for backups. Finally, the greatest logistical hurdle, remote management, was solved by deploying a JetKVM connected via Tailscale to ensure secure, Out-of-Band (OBB) management access to the system's UEFI and power controls remotely.</p>
+                <br>
+                 <p>This whole project came in at under $1200, making it quite the capable and affordable box when compared to even used enterprise gear, without sacrificing reliability and stability where it counts.</p>
+               <!-- <div class="highlight-box">
+                    <strong>Server Core Configuration:</strong> IP addresses (10.0.0.1 and 10.0.0.2) configured via PowerShell, with primary/secondary DNS servers pointing to peer DC and loopback for replication integrity.
+                </div>
+
+                <h3>Dedicated GUI Server (SRV01)</h3>
+                <p>Utilizes Desktop Experience (10.0.0.3) to host edge-case applications and provide management GUI. Hosts centralized file share for user profiles and home directories.</p>
+            </div> -->
+            </div>
+            <br>
+            <div class="section-card">
+                <h2>Core Accomplishments</h2>
+                <ul>
+                    <li>Tiered Storage Architecture: Designing and implementing data resiliency policies using Windows Storage Spaces (Parity and Mirroring) to balance capacity, cost, and power consumption.</li>
+                    <li>Out-of-Band Management (OOB): Deploying and configuring a secure, hardware-level KVM over IP solution via JetKVM and Tailscale for remote access and troubleshooting, ensuring 100% management uptime.</li>
+                    <li>Strategic Resource Optimization: Utilizing Cost-Benefit Analysis to prioritize budget towards high-impact components, reusing existing & and capable hardware when available, and taking advantage of the used market when appropriate to maximise my performance per dollar.</li>
+                    <li>Virtualization Platform Management: Deployment and configuration of Hyper-V Server and administrative tools (Windows Admin Center, Microsoft Management Console) for centralized management.</li>
+                </ul>
+            </div>
+
+            <div class="section-card">
+                <h2>Technologies & Skills</h2>
+                <div>
+                    <span class="tech-tag">Virtualization</span>
+                    <span class="tech-tag">Remote Management</span>
+                    <span class="tech-tag">Systems Planning</span>
+                    <span class="tech-tag">Hardware Procurement</span>
+                    <span class="tech-tag">Data Integrity</span>
+                    <span class="tech-tag">Resource Optimization</span>
+                </div>
+            </div>
+
+            <div class="next-button-container">
+                <a href="details.html" class="btn-next">The Hardware</a>
+            </div>
+        </section>
+    </main>
+
+    <footer>
+        <p>&copy; 2025 Joseph Broda</p>
+    </footer>
+</body>
+</html>
