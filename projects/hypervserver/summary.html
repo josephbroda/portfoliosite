@@ -1,9 +1,10 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Cost Efficient Hyper-V Server - Summary</title>
+    <title>Remote Proxmox Server - Summary</title>
     <link rel="stylesheet" href="../../styles.css">
     <style>
         /* Option 1: Card-Based Layout with Visual Separation */
@@ -106,6 +107,7 @@
         }
     </style>
 </head>
+
 <body>
     <nav class="nav-bar">
         <div class="nav-container">
@@ -113,7 +115,7 @@
             <ul class="nav-links">
                 <li><a href="../../index.html">Home</a></li>
                 <li><a href="../../projects.html" class="active">Projects</a></li>
-           <!--     <li><a href="../../resume.html">Resume</a></li> -->
+                <!--     <li><a href="../../resume.html">Resume</a></li> -->
 
             </ul>
         </div>
@@ -121,28 +123,58 @@
 
     <main>
         <section class="projects-header">
-            <h1>Remote Hyper-V Server</h1>
-            <p>A low cost virtualization platform built on reliability, strategic resource optimization, and out of band management.</p>
+            <h1>Remote Proxmox Server</h1>
+            <p>A low cost virtualization platform built on reliability, strategic resource optimization, and out of band
+                management.</p>
         </section>
 
         <section class="project-details">
             <div class="section-card">
-            <h2>Overview</h2>
-            <p>This site will outline the steps I took to bring this server online; from rationale, to software deployment and management.</p>
- <br>
+                <h2>Overview</h2>
+                <p>This site will outline the steps I took to bring this server online; from rationale, to software
+                    deployment and management.</p>
+                <br>
                 <h3>The Problem</h3>
-                <p>The catalyst for this project came to be due to the hassle of running Hyper-V on my PC. Sure, performance was stellar, but having to constantly spin up my entire lab only to shut it all down again later was killing my motivation. Being in a cramped dorm, I can't just leave my PC on 24/7 due to the excessive heat it produces, and restarting my VMs whenever I wanted to do anything meant I never got to work on long-term administration projects.</p>
+                <p>The catalyst for this project came to be due to the hassle of running Hyper-V on my PC. Sure,
+                    performance was stellar, but having to constantly spin up my entire lab only to shut it all down
+                    again later was killing my motivation. Being in a cramped dorm, I can't just leave my PC on 24/7 due
+                    to the excessive heat it produces, and restarting my VMs whenever I wanted to do anything meant I
+                    never got to work on long-term administration projects.</p>
                 <br>
                 <h3>The Objective</h3>
-                <p>My primary goal was simple: get these VMs off my desktop and onto an off-site, dedicated server thats up 24/7. This meant building a server that was reliable, efficient, and compact enough to not get in the way. Critically, I wanted to avoid investing in expensive, cutting-edge platforms, especially when I already had many of the components I'd need to get this project off the ground.</p>
+                <p>My primary goal was simple: get these VMs off my desktop and onto an off-site, dedicated server thats
+                    up 24/7. This meant building a server that was reliable, efficient, and compact enough to not get in
+                    the way. Critically, I wanted to avoid investing in expensive, cutting-edge platforms, especially
+                    when I already had many of the components I'd need to get this project off the ground.</p>
                 <br>
                 <h3>The Solution</h3>
-                <p>This project quickly evolved from a simple idea into a tangible solution via combination of already collected hardware, serendipudious deals, and a strategic partnership with my parents to make use of underutilized infrastructure.</p>
+                <p>This project quickly evolved from a simple idea into a tangible solution via combination of already
+                    collected hardware, serendipudious deals, and a strategic partnership with my parents to make use of
+                    underutilized infrastructure.</p>
                 <br>
-                <p>This led to my final decision: The 16-core Ryzen 9 3950x and known-stable ASRock B550 motherboard I had lying around would make the perfect platform for this project. Since my goal is upmost reliability, used enterprise unbuffered ECC memory in 4x16GB DIMM capacity was a solid investment and even cheaper than the equivalent consumer DDR4 DIMMs at the time of purchase. Storage is handled by an NVMe SSD for the OS, three 1TB NAS-optimized SATA SSDs in Storage Spaces Parity for space-efficient redundancy for my VMs, and two 4TB hard drives in Storage Spaces Mirroed for backups. Finally, the greatest logistical hurdle, remote management, was solved by deploying a JetKVM connected via Tailscale to ensure secure, Out-of-Band (OBB) management access to the system's UEFI and power controls remotely.</p>
+                <p>This led to my final decision: The 16-core Ryzen 9 3950x and known-stable ASRock B550 motherboard I
+                    had lying around made the perfect platform for this project. Since my goal is upmost
+                    reliability, used enterprise unbuffered ECC memory in 4x16GB DIMM capacity was a solid investment
+                    and even cheaper than the equivalent consumer DDR4 DIMMs at the time of purchase. Storage is handled
+                    by an NVMe SSD for the OS and three 1TB NAS-optimized SATA SSDs for VM storage. For backups, I
+                    deployed a separate Proxmox Backup Server on an older Dell Optiplex, utilizing my two 4TB hard
+                    drives to ensure incremental backups and negate the risk of losing backups after a hypervisor
+                    failure. To ensure data integrity during power events, I integrated a UPS
+                    with a NUT server on the main host and a client on the backup server for synchronized graceful
+                    shutdowns. Additionally, I deployed a Homebridge container with the APC UPS plugin to expose system
+                    uptime and power status directly to the Apple Home app for convenient monitoring. To maintain
+                    security and performance, all lab networking is isolated on its own VLAN, keeping it separate from
+                    regular home network traffic. </p>
                 <br>
-                 <p>This whole project came in at under $1200, making it quite the capable and affordable box when compared to even used enterprise gear, without sacrificing reliability and stability where it counts.</p>
-               <!-- <div class="highlight-box">
+                <p>Finally, the greatest logistical hurdle, remote management, was solved
+                    by deploying a JetKVM connected via Tailscale to ensure secure, Out-of-Band (OBB) management access
+                    to the system's
+                    UEFI and power controls remotely.</p>
+                <br>
+                <p>This whole project came in at under $1200, making it quite the capable and affordable box when
+                    compared to even used enterprise gear, without sacrificing reliability and stability where it
+                    counts.</p>
+                <!-- <div class="highlight-box">
                     <strong>Server Core Configuration:</strong> IP addresses (10.0.0.1 and 10.0.0.2) configured via PowerShell, with primary/secondary DNS servers pointing to peer DC and loopback for replication integrity.
                 </div>
 
@@ -150,14 +182,37 @@
                 <p>Utilizes Desktop Experience (10.0.0.3) to host edge-case applications and provide management GUI. Hosts centralized file share for user profiles and home directories.</p>
             </div> -->
 
-        </div>
+            </div>
+
+            <div class="section-card">
+                <h2>Lessons Learned: Hyper-V Server & Workgroups</h2>
+                <p>I originally provisioned this server with Hyper-V Server 2019, hoping Windows Admin Center would
+                    provide sufficient web-based management as well as giving me more hands-on experience with Windows
+                    administration. However, running in a workgroup environment led to
+                    persistent WinRM and CredSSP authentication issues. Even after TrustedHost and Group
+                    Policy workarounds, the VMConnect console
+                    remained non-functional, making remote management from macOS impractical. This experience drove the
+                    switch to Proxmox VE for its robust, platform-agnostic web interface.</p>
+            </div>
+
             <div class="section-card">
                 <h2>Core Accomplishments</h2>
                 <ul>
-                    <li>Tiered Storage Architecture: Designing and implementing data resiliency policies using Windows Storage Spaces (Parity and Mirroring) to balance capacity, cost, and power consumption.</li>
-                    <li>Out-of-Band Management (OOB): Deploying and configuring a secure, hardware-level KVM over IP solution via JetKVM and Tailscale for remote access and troubleshooting, ensuring 100% management uptime.</li>
-                    <li>Strategic Resource Optimization: Utilizing Cost-Benefit Analysis to prioritize budget towards high-impact components, reusing existing & and capable hardware when available, and taking advantage of the used market when appropriate to maximise my performance per dollar.</li>
-                    <li>Virtualization Platform Management: Deployment and configuration of Hyper-V Server and administrative tools (Windows Admin Center, Microsoft Management Console) for centralized management.</li>
+                    <li>Resilient Backup Strategy: Deploying a dedicated Proxmox Backup Server on separate hardware
+                        (Dell Optiplex) to provide incremental backups and isolate failure domains.</li>
+                    <li>Out-of-Band Management (OOB): Deploying and configuring a secure, hardware-level KVM over IP
+                        solution via JetKVM and Tailscale for remote access and troubleshooting, ensuring 100%
+                        management uptime.</li>
+                    <li>Strategic Resource Optimization: Utilizing Cost-Benefit Analysis to prioritize budget towards
+                        high-impact components, reusing existing capable hardware when available, and taking advantage
+                        of the used market when appropriate to maximize performance per dollar.</li>
+                    <li>Virtualization Platform Management: Deployment and configuration of Proxmox VE for a simplified,
+                        non-domain management experience that is accessible from any device.</li>
+                    <li>Automated Power Management: Configured Network UPS Tools (NUT) in a server/client architecture
+                        to orchestrate graceful shutdowns across both Proxmox nodes during power outages, with real-time
+                        status monitoring integrated into Apple Home via Homebridge.</li>
+                    <li>Network Segmentation: Implemented VLANs to isolate lab traffic from the main home network,
+                        enhancing security and preventing broadcast storms from affecting other devices.</li>
                 </ul>
             </div>
 
@@ -170,11 +225,13 @@
                     <span class="tech-tag">Hardware Procurement</span>
                     <span class="tech-tag">Data Integrity</span>
                     <span class="tech-tag">Resource Optimization</span>
+                    <span class="tech-tag">Power Management</span>
+                    <span class="tech-tag">Network Segmentation</span>
                 </div>
             </div>
 
             <div class="next-button-container">
-                <a href="../../index.html" class="btn-next">The Hardware (Coming soon. Work in progress)</a>
+                <a href="../../index.html" class="btn-next">Hardware & Setup (Coming soon. Work in progress)</a>
             </div>
         </section>
     </main>
@@ -183,4 +240,5 @@
         <p>&copy; 2025 Joseph Broda</p>
     </footer>
 </body>
+
 </html>
