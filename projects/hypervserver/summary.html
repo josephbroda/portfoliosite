@@ -131,68 +131,70 @@
         <section class="project-details">
             <div class="section-card">
                 <h2>Overview</h2>
-                <p>This site will outline the steps I took to bring this server online; from rationale, to software
-                    deployment and management.</p>
-                <br>
                 <h3>The Problem</h3>
-                <p>The catalyst for this project came to be due to the hassle of running Hyper-V on my PC. Sure,
-                    performance was stellar, but having to constantly spin up my entire lab only to shut it all down
-                    again later was killing my motivation. Being in a cramped dorm, I can't just leave my PC on 24/7 due
-                    to the excessive heat it produces, and restarting my VMs whenever I wanted to do anything meant I
-                    never got to work on long-term administration projects.</p>
+
+                <p>Running Hyper-V on my daily driver PC created significant friction:</p>
+                <ul>
+                    <li><strong>Resource Contention:</strong> Spinning up the lab required shutting down other
+                        applications.</li>
+                    <li><strong>Heat & Noise:</strong> Leaving a high-performance desktop on 24/7 in a dorm room was
+                        impractical. (heat and noise)</li>
+                    <li><strong>Disrupted Workflow:</strong> Restarting VMs for every session discouraged long-term
+                        projects.</li>
+                </ul>
                 <br>
                 <h3>The Objective</h3>
-                <p>My primary goal was simple: get these VMs off my desktop and onto an off-site, dedicated server thats
-                    up 24/7. This meant building a server that was reliable, efficient, and compact enough to not get in
-                    the way. Critically, I wanted to avoid investing in expensive, cutting-edge platforms, especially
-                    when I already had many of the components I'd need to get this project off the ground.</p>
+
+                <p>I needed a dedicated, off-site server to host my VMs 24/7. The key requirements were:</p>
+                <ul>
+                    <li><strong>Reliability:</strong> Stable hardware and data protection.</li>
+                    <li><strong>Efficiency:</strong> Low power consumption and heat output.</li>
+                    <li><strong>Cost-Effectiveness:</strong> Utilizing existing components where possible.</li>
+                    <li><strong>Remote Management:</strong> Full control without physical access.</li>
+                </ul>
                 <br>
                 <h3>The Solution</h3>
-                <p>This project quickly evolved from a simple idea into a tangible solution via combination of already
-                    collected hardware, serendipudious deals, and a strategic partnership with my parents to make use of
-                    underutilized infrastructure.</p>
-                <br>
-                <p>This led to my final decision: The 16-core Ryzen 9 3950x and known-stable ASRock B550 motherboard I
-                    had lying around made the perfect platform for this project. Since my goal is upmost
-                    reliability, used enterprise unbuffered ECC memory in 4x16GB DIMM capacity was a solid investment
-                    and even cheaper than the equivalent consumer DDR4 DIMMs at the time of purchase. Storage is handled
-                    by an NVMe SSD for the OS and three 1TB NAS-optimized SATA SSDs for VM storage. For backups, I
-                    deployed a separate Proxmox Backup Server on an older Dell Optiplex, utilizing my two 4TB hard
-                    drives to ensure incremental backups and negate the risk of losing backups after a hypervisor
-                    failure. To ensure data integrity during power events, I integrated a UPS
-                    with a NUT server on the main host and a client on the backup server for synchronized graceful
-                    shutdowns. Additionally, I deployed a Homebridge container with the APC UPS plugin to expose system
-                    uptime and power status directly to the Apple Home app for convenient monitoring. To maintain
-                    security and performance, all lab networking is isolated on its own VLAN, keeping it separate from
-                    regular home network traffic. </p>
-                <br>
-                <p>Finally, the greatest logistical hurdle, remote management, was solved
-                    by deploying a JetKVM connected via Tailscale to ensure secure, Out-of-Band (OBB) management access
-                    to the system's
-                    UEFI and power controls remotely.</p>
-                <br>
-                <p>This whole project came in at under $1200, making it quite the capable and affordable box when
-                    compared to even used enterprise gear, without sacrificing reliability and stability where it
-                    counts.</p>
-                <!-- <div class="highlight-box">
-                    <strong>Server Core Configuration:</strong> IP addresses (10.0.0.1 and 10.0.0.2) configured via PowerShell, with primary/secondary DNS servers pointing to peer DC and loopback for replication integrity.
-                </div>
 
-                <h3>Dedicated GUI Server (SRV01)</h3>
-                <p>Utilizes Desktop Experience (10.0.0.3) to host edge-case applications and provide management GUI. Hosts centralized file share for user profiles and home directories.</p>
-            </div> -->
+                <p>I built a custom server using a mix of repurposed hardware and strategic new and used purchases,
+                    focusing on
+                    reliability and remote manageability while also keeping costs down.</p>
 
-            </div>
+                <br>
 
-            <div class="section-card">
-                <h2>Lessons Learned: Hyper-V Server & Workgroups</h2>
-                <p>I originally provisioned this server with Hyper-V Server 2019, hoping Windows Admin Center would
-                    provide sufficient web-based management as well as giving me more hands-on experience with Windows
-                    administration. However, running in a workgroup environment led to
-                    persistent WinRM and CredSSP authentication issues. Even after TrustedHost and Group
-                    Policy workarounds, the VMConnect console
-                    remained non-functional, making remote management from macOS impractical. This experience drove the
-                    switch to Proxmox VE for its robust, platform-agnostic web interface.</p>
+                <h4>Hardware & Storage</h4>
+                <ul>
+                    <li><strong>Compute:</strong> Ryzen 9 3950x (16-core) on an ASRock B550m Pro 4 motherboard.</li>
+                    <li><strong>Memory:</strong> 64GB (4x16GB) ECC Unbuffered DDR4.</li>
+                    <li><strong>Storage:</strong> NVMe SSD for OS, 3x 1TB NAS SATA SSDs for VMs in RAIDZ1 for redundancy
+                        and space efficiency.</li>
+                </ul>
+
+                <br>
+
+                <h4>Backup & Reliability</h4>
+                <ul>
+                    <li><strong>Proxmox Backup Server:</strong> Deployed on a separate, already owned Dell Optiplex with
+                        2x 4TB HDDs in a mirrored configuration
+                        for incremental backups.</li>
+                    <li><strong>Power Protection:</strong> UPS with NUT server/client configuration for synchronized
+                        graceful shutdowns.</li>
+                    <li><strong>Monitoring:</strong> Homebridge with APC UPS plugin for uptime and power status in Apple
+                        Home.</li>
+                </ul>
+
+                <br>
+
+                <h4>Network & Management</h4>
+                <ul>
+                    <li><strong>Remote Access:</strong> JetKVM via Tailscale for secure Out-of-Band (OOB) management of
+                        UEFI and power.</li>
+                    <li><strong>Security:</strong> Isolated VLAN for all lab traffic to separate it from the home
+                        network.</li>
+                </ul>
+
+                <br>
+                <p><strong>Total Cost:</strong> Under $1200, delivering enterprise-grade features at a fraction of
+                    the price.</p>
             </div>
 
             <div class="section-card">
@@ -215,6 +217,17 @@
                         enhancing security and preventing broadcast storms from affecting other devices.</li>
                 </ul>
             </div>
+            <div class="section-card">
+                <h2>Lessons Learned: Hyper-V Server & Workgroups</h2>
+                <p>I originally provisioned this server with Hyper-V Server 2019, hoping Windows Admin Center would
+                    provide sufficient web-based management, as well as giving me more hands-on experience with Windows
+                    administration. However, running in a workgroup environment led to
+                    persistent WinRM and CredSSP authentication issues. Even after TrustedHost and Group
+                    Policy workarounds, the VMConnect console on Windows Admin Center
+                    remained non-functional, making remote management from macOS impractical. This experience drove the
+                    switch to Proxmox VE for its robust, platform-agnostic web interface.</p>
+            </div>
+
 
             <div class="section-card">
                 <h2>Technologies & Skills</h2>
@@ -229,7 +242,6 @@
                     <span class="tech-tag">Network Segmentation</span>
                 </div>
             </div>
-
             <div class="next-button-container">
                 <a href="../../index.html" class="btn-next">Hardware & Setup (Coming soon. Work in progress)</a>
             </div>
