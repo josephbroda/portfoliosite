@@ -1,11 +1,12 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>JoeCorp - Summary</title>
     <link rel="stylesheet" href="../../styles.css">
-   <style>
+    <style>
         /* Option 1: Card-Based Layout with Visual Separation */
         .project-details {
             max-width: 1500px;
@@ -106,6 +107,7 @@
         }
     </style>
 </head>
+
 <body>
     <nav class="nav-bar">
         <div class="nav-container">
@@ -113,7 +115,7 @@
             <ul class="nav-links">
                 <li><a href="../../index.html">Home</a></li>
                 <li><a href="../../projects.html" class="active">Projects</a></li>
-               <!-- <li><a href="../../resume.html">Resume</a></li> -->
+                <!-- <li><a href="../../resume.html">Resume</a></li> -->
 
             </ul>
         </div>
@@ -122,28 +124,37 @@
     <main>
         <section class="projects-header">
             <h1>JoeCorp</h1>
-            <p>A self-guided exploration into on-premises Windows administration, modeled after a medium-sized business.</p> <!--This is a living project journal documenting the phased deployment of core services, troubleshooting, and architectural decisions across multiple milestones.</p> -->
+            <p>A self-guided exploration into on-premises Windows administration, modeled after a medium-sized business.
+            </p>
+            <!--This is a living project journal documenting the phased deployment of core services, troubleshooting, and architectural decisions across multiple milestones.</p> -->
         </section>
 
         <section class="project-details">
             <div class="section-card">
-            <h2>Project Documentation</h2>
-            <p>The full JoeCorp deployment is detailed below as a multi-milestone journal, showcasing the step-by-step process of building a modern enterprise environment.</p>
+                <h2>Project Documentation</h2>
+                <p>The full JoeCorp deployment is detailed below as a multi-milestone journal, showcasing the
+                    step-by-step process of building a modern enterprise environment.</p>
             </div>
             <div class="section-card">
                 <h2>Infrastructure Overview</h2>
-                <p>The virtual environment utilizes Windows Server 2025, Windows 11 Enterprise clients,and pfSense networking, representing a modern enterprise setup.</p>
+                <p>The virtual environment utilizes Windows Server 2025, Windows 11 Enterprise clients, and pfSense
+                    networking, representing a modern enterprise setup.</p>
 
                 <h3>Domain Controllers (DC01 & DC02)</h3>
-                <p>Deployed as redundant, high-availability Domain Controllers using Server Core for reduced attack surface and lower resource consumption.</p>
+                <p>Deployed as redundant, high-availability Domain Controllers using Server Core for reduced attack
+                    surface and lower resource consumption.</p>
                 <div class="highlight-box">
-                    <strong>Server Core Configuration:</strong> IP addresses (10.0.0.2 and 10.0.0.3) configured via PowerShell, with primary/secondary DNS servers pointing to peer DC and loopback for replication integrity.
+                    <strong>Server Core Configuration:</strong> IP addresses (10.0.0.2 and 10.0.0.3) configured via
+                    PowerShell, with primary/secondary DNS servers pointing to peer DC and loopback for replication
+                    integrity.
                 </div>
 
                 <h3>Dedicated GUI Server (SRV01)</h3>
-                <p>Utilizes Desktop Experience (10.0.0.4) to host edge-case applications and provide management GUI. Hosts centralized file share for user profiles and home directories.</p>
+                <p>Utilizes Desktop Experience (10.0.0.4) to host edge-case applications and provide management GUI.
+                    Hosts centralized file share for user profiles and home directories.</p>
                 <h3>Networking</h3>
-                <p>pfSense is used as the networking backbone. While it's acting as a gateway and router at the moment, I plan to implement segmentation and vLANs in future iterations as I build up my skillset.</p>
+                <p>pfSense is used as the networking backbone. While it's acting as a gateway and router at the moment,
+                    I plan to implement segmentation and vLANs in future iterations as I build up my skillset.</p>
             </div>
 
             <div class="section-card">
@@ -178,4 +189,5 @@
         <p>&copy; 2025 Joseph Broda</p>
     </footer>
 </body>
+
 </html>

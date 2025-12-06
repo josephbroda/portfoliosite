@@ -173,9 +173,9 @@
 
                 <h4>Backup & Reliability</h4>
                 <ul>
-                    <li><strong>Proxmox Backup Server:</strong> Deployed on a separate, already owned Dell Optiplex with
-                        2x 4TB HDDs in a mirrored configuration
-                        for incremental backups.</li>
+                    <li><strong>Proxmox Backup Server:</strong> Virtualized on the main host with 2x 4TB HDDs passed
+                        through directly for incremental backups, facilitating easy migration to bare metal in the
+                        future.</li>
                     <li><strong>Power Protection:</strong> UPS with NUT server/client configuration for synchronized
                         graceful shutdowns.</li>
                     <li><strong>Monitoring:</strong> Homebridge with APC UPS plugin for uptime and power status in Apple
@@ -193,15 +193,15 @@
                 </ul>
 
                 <br>
-                <p><strong>Total Cost:</strong> Under $1200, delivering enterprise-grade features at a fraction of
-                    the price.</p>
+                <p><strong>Total Cost:</strong> Under $1000 all-in, delivering enterprise-grade features at a fraction
+                    of the price.</p>
             </div>
 
             <div class="section-card">
                 <h2>Core Accomplishments</h2>
                 <ul>
-                    <li>Resilient Backup Strategy: Deploying a dedicated Proxmox Backup Server on separate hardware
-                        (Dell Optiplex) to provide incremental backups and isolate failure domains.</li>
+                    <li>Resilient Backup Strategy: Virtualizing Proxmox Backup Server with direct disk passthrough to
+                        combine the flexibility of virtualization with the data portability of physical hardware.</li>
                     <li>Out-of-Band Management (OOB): Deploying and configuring a secure, hardware-level KVM over IP
                         solution via JetKVM and Tailscale for remote access and troubleshooting, ensuring 100%
                         management uptime.</li>
@@ -211,7 +211,8 @@
                     <li>Virtualization Platform Management: Deployment and configuration of Proxmox VE for a simplified,
                         non-domain management experience that is accessible from any device.</li>
                     <li>Automated Power Management: Configured Network UPS Tools (NUT) in a server/client architecture
-                        to orchestrate graceful shutdowns across both Proxmox nodes during power outages, with real-time
+                        to orchestrate graceful shutdowns across the host and backup server during power outages, with
+                        real-time
                         status monitoring integrated into Apple Home via Homebridge.</li>
                     <li>Network Segmentation: Implemented VLANs to isolate lab traffic from the main home network,
                         enhancing security and preventing broadcast storms from affecting other devices.</li>
