@@ -188,13 +188,13 @@
                 <ul>
                     <li><strong>Remote Access:</strong> JetKVM via Tailscale for secure Out-of-Band (OOB) management of
                         UEFI and power.</li>
-                    <li><strong>Security:</strong> Isolated VLAN for all lab traffic to separate it from the home
+                    <li><strong>Security:</strong> Isolated LAN for all lab traffic to separate it from the home
                         network.</li>
                 </ul>
 
                 <br>
-                <p><strong>Total Cost:</strong> Under $1000 all-in, delivering enterprise-grade features at a fraction
-                    of the price.</p>
+                <p><strong>Total Cost:</strong> Under $1000 going off of market prices as of November 2025,
+                    delivering enterprise-grade features at a fraction of the price of used servers.</p>
             </div>
 
             <div class="section-card">
@@ -203,7 +203,7 @@
                     <li>Resilient Backup Strategy: Virtualizing Proxmox Backup Server with direct disk passthrough to
                         combine the flexibility of virtualization with the data portability of physical hardware.</li>
                     <li>Out-of-Band Management (OOB): Deploying and configuring a secure, hardware-level KVM over IP
-                        solution via JetKVM and Tailscale for remote access and troubleshooting, ensuring 100%
+                        solution via JetKVM and Tailscale for remote access and troubleshooting, ensuring high
                         management uptime.</li>
                     <li>Strategic Resource Optimization: Utilizing Cost-Benefit Analysis to prioritize budget towards
                         high-impact components, reusing existing capable hardware when available, and taking advantage
@@ -214,19 +214,19 @@
                         to orchestrate graceful shutdowns across the host and backup server during power outages, with
                         real-time
                         status monitoring integrated into Apple Home via Homebridge.</li>
-                    <li>Network Segmentation: Implemented VLANs to isolate lab traffic from the main home network,
-                        enhancing security and preventing broadcast storms from affecting other devices.</li>
+                    <li>Network Segmentation: Implemented a dedicated LAN for lab traffic to isolate it from the main
+                        home network, enhancing security and reliability.</li>
                 </ul>
             </div>
             <div class="section-card">
                 <h2>Lessons Learned: Hyper-V Server & Workgroups</h2>
-                <p>I originally provisioned this server with Hyper-V Server 2019, hoping Windows Admin Center would
+                <p>I originally provisioned this project with Hyper-V Server 2019, hoping Windows Admin Center would
                     provide sufficient web-based management, as well as giving me more hands-on experience with Windows
-                    administration. However, running in a workgroup environment led to
-                    persistent WinRM and CredSSP authentication issues. Even after TrustedHost and Group
-                    Policy workarounds, the VMConnect console on Windows Admin Center
-                    remained non-functional, making remote management from macOS impractical. This experience drove the
-                    switch to Proxmox VE for its robust, platform-agnostic web interface.</p>
+                    administration. However, running in a workgroup environment led to persistent WinRM and CredSSP
+                    authentication issues. Even after TrustedHost and Group Policy workarounds, the VMConnect console on
+                    Windows Admin Center remained non-functional, making remote management from my prefered platform,
+                    macOS, impractical. This experience drove the switch to Proxmox VE for its robust, platform-agnostic
+                    web interface.</p>
             </div>
 
 
@@ -241,6 +241,7 @@
                     <span class="tech-tag">Resource Optimization</span>
                     <span class="tech-tag">Power Management</span>
                     <span class="tech-tag">Network Segmentation</span>
+                    <span class="tech-tag">Linux</span>
                 </div>
             </div>
             <div class="next-button-container">

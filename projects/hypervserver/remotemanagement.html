@@ -1,0 +1,550 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Proxmox Server - Remote Management & Power Integration</title>
+    <link rel="stylesheet" href="../../styles.css">
+    <style>
+        /* Timeline-Style with Image Placeholders */
+        .project-details {
+            max-width: 1000px;
+            margin: 0 auto;
+            padding: 2rem;
+        }
+
+        .content-block {
+            margin-bottom: 3rem;
+            padding-left: 2rem;
+            border-left: 3px solid #e5e5e7;
+            position: relative;
+        }
+
+        .content-block:before {
+            content: "";
+            position: absolute;
+            left: -9px;
+            top: 0;
+            width: 15px;
+            height: 15px;
+            background: #0071e3;
+            border-radius: 50%;
+            border: 3px solid #ffffff;
+            box-shadow: 0 0 0 2px #e5e5e7;
+        }
+
+        .content-block h2 {
+            font-size: 1.5rem;
+            margin-bottom: 1rem;
+            color: #1d1d1f;
+        }
+
+        .content-block h3 {
+            font-size: 1.15rem;
+            margin-top: 1.25rem;
+            margin-bottom: 0.5rem;
+            color: #0071e3;
+            font-weight: 500;
+        }
+
+        .screenshot-placeholder {
+            width: 100%;
+            height: 300px;
+            background: linear-gradient(135deg, #f5f5f7 0%, #e8e8ed 100%);
+            border-radius: 8px;
+            margin: 1.5rem 0;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: #6e6e73;
+            font-size: 0.9rem;
+            overflow: hidden;
+        }
+
+        .screenshot-placeholder img {
+            max-width: 100%;
+            max-height: 100%;
+            object-fit: contain;
+        }
+
+        .image-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 1rem;
+            margin: 1.5rem 0;
+        }
+
+        .image-grid .screenshot-placeholder {
+            margin: 0;
+            height: 250px;
+        }
+
+        @media (max-width: 600px) {
+            .image-grid {
+                grid-template-columns: 1fr;
+            }
+        }
+
+        .btn-next-milestone {
+            display: inline-flex;
+            align-items: center;
+            gap: 0.5rem;
+            background: #0071e3;
+            color: #ffffff;
+            padding: 0.75rem 1.5rem;
+            border-radius: 980px;
+            text-decoration: none;
+            font-weight: 500;
+            transition: all 0.3s ease;
+            box-shadow: 0 4px 12px rgba(0, 113, 227, 0.2);
+        }
+
+        .btn-next-milestone:hover {
+            background: #0077ed;
+            transform: translateY(-2px);
+            box-shadow: 0 6px 16px rgba(0, 113, 227, 0.3);
+        }
+
+        .btn-next-milestone:after {
+            content: "→";
+            font-size: 1.2rem;
+        }
+
+        /* Table Styles */
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin: 1.5rem 0;
+            background: #ffffff;
+            border-radius: 12px;
+            overflow: hidden;
+            box-shadow: 0 2px 8px rgba(0, 0, 0, 0.06);
+            font-size: 0.95rem;
+        }
+
+        th,
+        td {
+            padding: 1rem;
+            text-align: left;
+            border-bottom: 1px solid #e5e5e7;
+            vertical-align: top;
+        }
+
+        th {
+            background-color: #f5f5f7;
+            font-weight: 600;
+            color: #1d1d1f;
+        }
+
+        tr:last-child td {
+            border-bottom: none;
+        }
+
+        .navigation-buttons {
+            display: flex;
+            justify-content: center;
+            gap: 1rem;
+            margin: 3rem 0 2rem;
+            flex-wrap: wrap;
+        }
+
+        .btn-back {
+            display: inline-flex;
+            align-items: center;
+            gap: 0.5rem;
+            background: #f5f5f7;
+            color: #1d1d1f;
+            padding: 0.75rem 1.5rem;
+            border-radius: 980px;
+            text-decoration: none;
+            font-weight: 500;
+            transition: all 0.3s ease;
+        }
+
+        .btn-back:hover {
+            background: #e8e8ed;
+        }
+
+        .btn-back:before {
+            content: "←";
+            font-size: 1.2rem;
+        }
+
+        .code-snippet {
+            background: #1d1d1f;
+            color: #f5f5f7;
+            padding: 1rem 1.25rem;
+            border-radius: 6px;
+            font-family: 'Courier New', monospace;
+            font-size: 0.85rem;
+            margin: 1rem 0;
+            overflow-x: auto;
+        }
+
+        @media (max-width: 768px) {
+            .project-details {
+                padding: 1rem;
+            }
+
+            table {
+                display: block;
+                overflow-x: auto;
+            }
+        }
+    </style>
+</head>
+
+<body>
+    <nav class="nav-bar">
+        <div class="nav-container">
+            <a href="../../index.html" class="nav-logo">Proxmox Server</a>
+            <ul class="nav-links">
+                <li><a href="../../index.html">Home</a></li>
+                <li><a href="../../projects.html" class="active">Projects</a></li>
+                <!-- <li><a href="../../resume.html">Resume</a></li> -->
+            </ul>
+        </div>
+    </nav>
+
+    <main>
+        <section class="projects-header">
+            <h1>Remote Management & Power Integration</h1>
+        </section>
+
+        <section class="project-details">
+            <div class="content-block">
+                <h2>Secure Remote Access & Out-of-Band (OOB) Management</h2>
+                <ul>
+                    <li><strong>JetKVM Setup:</strong> The JetKVM was assigned a DHCP reservation (10.0.1.2) and was
+                        installed with the ATX extension to manage power.</li>
+                    <li><strong>Access Troubleshooting:</strong> An initial issue was encountered where the HDMI display
+                        was detected but not visible in Safari. After messing with various content blocker and privacy
+                        settings, I've determined that the issue may be with WebKit itself This was resolved by pivoting
+                        to Chromium-based browsers
+                        (e.g., Arc).</li>
+                </ul>
+
+                <h3>Secure Tunnel Configuration (Tailscale)</h3>
+                <p>Tailscale was configured on the JetKVM to provide a secure, encrypted tunnel to the OOB management
+                    interface. Tailscale is accessed via a YubiKey-backed Passkey to provide a physical layer of
+                    security to my
+                    Tailnet.</p>
+                <ul>
+                    <li><strong>Roadblock:</strong> My original plan was to use the JetKVM as a <a
+                            href="https://tailscale.com/kb/1019/subnets#connect-to-tailscale-as-a-subnet-router"
+                            target="_blank">subnet router</a> to
+                        simplify the mamagement of devices on my Tailnet without having to install the Tailscale client
+                        on each device. However, after some troubleshooting, I found that the sparse BusyBox Linux
+                        install JetKVM ships with does not support the necessary routing capabilities. The commands
+                        <code>echo 'net.    ipv4.ip_forward = 1' |  tee -a /etc/sysctl.d/99-tailscale.conf</code> and
+                        <code>sysctl -p /etc/sysctl.d/99-tailscale.conf</code> returned nothing, signaling that the
+                        commands were not supported.
+                    </li>
+                    <li><strong>Rescoped:</strong> The Tailscale installation was rescoped, moving the subnet routing
+                        function to the Proxmox VE (PVE) system.</li>
+                </ul>
+            </div>
+
+            <div class="content-block">
+                <h2>Automated Power Management (NUT) Integration</h2>
+                <p>Following the <a
+                        href="https://www.kreaweb.be/diy-home-server-2021-software-proxmox-ups/#2_DIY_HOME_SERVER_-_PROXMOX_-_NUT"
+                        target="_blank">Kreaweb NUT Guide</a>, I implemented a robust power management system to ensure
+                    graceful shutdowns during power failures.</p>
+                <ul>
+                    <li><strong>NUT Installation and Device ID:</strong> Network UPS Tools (NUT) was installed on the
+                        PVE host with <code>apt install nut</code>. The APC UPS USB ID (051d:0002) was found using
+                        <code>lsusb</code> and
+                        <code>nut-scanner</code> for driver configuration.
+                    </li>
+                    <div class="code-snippet">
+                        > lsusb
+                        <br>
+                        Bus 001 Device 002: ID 051d:0002 American Power Conversion Uninterruptible Power Supply
+                    </div>
+                    <br>
+                    <div class="code-snippet">
+                        > nut-scanner -u
+                        <br>
+                        [nutdev1]
+                        <br>
+                        driver = "usbhid-ups"
+                        <br>
+                        port = "auto"
+                        <br>
+                        vendorid = "051D"
+                        <br>
+                        productid = "0002"
+                        <br>
+                        product = "Back-UPS RS 1500G FW:865.L5 .D USB FW:L5"
+                        <br>
+                        serial = "4B1445P49233"
+                        <br>
+                        <br>
+                        vendor = "American Power Conversion"
+                        <br>
+                        bus = "001"
+                        <br>
+                        device = "004"
+                        <br>
+                        busport = "006"
+                        <br>
+                        ###NOTMATCHED-YET###bcdDevice = "0090"
+                    </div>
+                    <li><strong>Driver Configuration (ups.conf):</strong> The UPS was defined using the
+                        <code>usbhid-ups</code> driver, specifying the unique Vendor ID and Product ID found using
+                        <code>lsusb</code> and <code>nut-scanner</code>.
+                    </li>
+                    <div class="code-snippet">
+                        pollinterval = 15
+                        <br>
+                        maxretry = 3
+                        <br>
+                        offdelay = 120
+                        <br>
+                        ondelay = 240
+                        <br>
+                        [apc]
+                        <br>
+                        driver = usbhid-ups
+                        <br>
+                        port = auto
+                        <br>
+                        desc = "APC Back-UPS RS1500G"
+                        <br>
+                        vendorid = 051D
+                        <br>
+                        productid = 0002
+                        <br>
+                        serial = 4B1445P49233
+                    </div>
+                    <li><strong>Permissions Fix:</strong> libusb1 initially failed with "insufficient permissions" after
+                        running <code>upsdrvctl start</code>
+                        (as documented in this <a href="https://forum.proxmox.com/threads/unable-to-run-nut.146803/"
+                            target="_blank">Proxmox forum thread</a>). This required a custom UDEV rule
+                        (<code>/etc/udev/rules.d/50-nut-ups.rules</code>) to grant the <code>nut</code> group necessary
+                        device access.</li>
+                    <div class="code-snippet">
+
+                        > cat /etc/udev/rules.d/99-usb_ups.rules
+                        >> ATTR{idVendor}=="0463", ATTR{idProduct}=="ffff", MODE="0770", GROUP="nut"
+
+                    </div>
+                </ul>
+
+                <h3>Server/Client Configuration</h3>
+                <ul>
+                    <li><code>/etc/nut/nut.conf</code> was set to <code>MODE=netserver</code>.</li>
+                    <li><code>/etc/nut/upsd.conf</code> was configured to listen on all interfaces (0.0.0.0).</li>
+                    <li><code>/etc/nut/upsd.users</code> defined both a master user (<code>upsadmin</code>) with SET and
+                        FSD
+                        (Forced Shutdown) actions, and a slave user (<code>upsuser</code>) for future use on other
+                        clients.</li>
+                </ul>
+
+                <h3>Shutdown Orchestration (upsmon & upssched)</h3>
+                <ul>
+                    <li><code>/etc/nut/upsmon.conf</code> montiors UPS events and status.</li>
+                    <div class="code-snippet">
+                        RUN_AS_USER root
+                        <br>
+                        MONITOR apc@localhost 1 upsadmin <i>"password"</i> master
+                        <br>
+                        MINSUPPLIES 1
+                        <br>
+                        SHUTDOWNCMD "/sbin/shutdown -h"
+                        <br>
+                        NOTIFYCMD /usr/sbin/upssched
+                        <br>
+                        POLLFREQ 4
+                        <br>
+                        POLLFREQALERT 2
+                        <br>
+                        HOSTSYNC 15
+                        <br>
+                        DEADTIME 24
+                        <br>
+                        MAXAGE 24
+                        <br>
+                        POWERDOWNFLAG /etc/killpower
+                        <br>
+                        NOTIFYMSG ONLINE "UPS %s on line power"
+                        <br>
+                        NOTIFYMSG ONBATT "UPS %s on battery"
+                        <br>
+                        NOTIFYMSG LOWBATT "UPS %s battary is low"
+                        <br>
+                        NOTIFYMSG FSD "UPS %s: forced shutdown in progress"
+                        <br>
+                        NOTIFYMSG COMMOK "Communications with UPS %s established"
+                        <br>
+                        NOTIFYMSG COMMBAD "Communications with UPS %s lost"
+                        <br>
+                        NOTIFYMSG SHUTDOWN "Auto logout and shutdown proceeding"
+                        <br>
+                        NOTIFYMSG REPLBATT "UPS %s battery needs to be replaced"
+                        <br>
+                        NOTIFYMSG NOCOMM "UPS %s is unavailable"
+                        <br>
+                        NOTIFYMSG NOPARENT "upsmon parent process died - shutdown impossible"
+                        <br>
+                        NOTIFYFLAG ONLINE SYSLOG+WALL+EXEC
+                        <br>
+                        NOTIFYFLAG ONBATT SYSLOG+WALL+EXEC
+                        <br>
+                        NOTIFYFLAG LOWBATT SYSLOG+WALL+EXEC
+                        <br>
+                        NOTIFYFLAG FSD SYSLOG+WALL+EXEC
+                        <br>
+                        NOTIFYFLAG COMMOK SYSLOG+WALL+EXEC
+                        <br>
+                        NOTIFYFLAG SHUTDOWN SYSLOG+WALL+EXEC
+                        <br>
+                        NOTIFYFLAG REPLBATT SYSLOG+WALL
+                        <br>
+                        NOTIFYFLAG NOCOMM SYSLOG+WALL+EXEC
+                        <br>
+                        NOTIFYFLAG NOPARENT SYSLOG+WALL
+                        <br>
+                        RBWARNTIME 43200
+                        <br>
+                        NOCOMMWARNTIME 600
+                        <br>
+                        FINALDELAY 5
+                        <br>
+                        Nano /etc/nut/upssched.conf
+                        <br>
+                        CMDSCRIPT /etc/nut/upssched-cmd
+                        <br>
+                        PIPEFN /etc/nut/upssched.pipe
+                        <br>
+                        LOCKFN /etc/nut/upssched.lock
+                        <br>
+                        AT ONBATT * START-TIMER onbatt 30
+                        <br>
+                        AT ONLINE * CANCEL-TIMER onbatt online
+                        <br>
+                        AT LOWBATT * EXECUTE onbatt
+                        <br>
+                        AT COMMBAD * START-TIMER commbad 30
+                        <br>
+                        AT COMMOK * CANCEL-TIMER commbad commok
+                        <br>
+                        AT NOCOMM * EXECUTE commbad
+                        <br>
+                        AT SHUTDOWN * EXECUTE powerdown
+                        <br>
+                        AT SHUTDOWN * EXECUTE powerdown
+
+                    </div>
+                    <li><code>/etc/nut/upssched.conf</code> was set up to start a 30-second timer (<code>onbatt</code>)
+                        when a power event occurs, preventing immediate shutdown from short outages.</li>
+                    <div class="code-snippet">
+                        CMDSCRIPT /etc/nut/upssched-cmd
+                        <br>
+                        PIPEFN /etc/nut/upssched.pipe
+                        <br>
+                        LOCKFN /etc/nut/upssched.lock
+                        <br>
+                        AT ONBATT * START-TIMER onbatt 30
+                        <br>
+                        AT ONLINE * CANCEL-TIMER onbatt online
+                        <br>
+                        AT LOWBATT * EXECUTE onbatt
+                        <br>
+                        AT COMMBAD * START-TIMER commbad 30
+                        <br>
+                        AT COMMOK * CANCEL-TIMER commbad commok
+                        <br>
+                        AT NOCOMM * EXECUTE commbad
+                        <br>
+                        AT SHUTDOWN * EXECUTE powerdown
+                        <br>
+                        AT SHUTDOWN * EXECUTE powerdown
+                    </div>
+                    <li><strong>Graceful Shutdown Command:</strong> The critical shutdown command in
+                        <code>/etc/nut/upssched-cmd</code> was configured to issue <code>/usr/sbin/upsmon -c fsd</code>
+                        (Force Shutdown) when the battery is critical. <code>chmod +x etc/nut/upssched-cmd</code> makes
+                        the script executable.
+                    </li>
+                    <div class="code-snippet">
+                        #!/bin/sh
+                        <br>
+                        case $1 in
+                        <br>
+                        onbatt)
+                        <br>
+                        logger -t upssched-cmd "UPS running on battery"
+                        <br>
+                        ;;
+                        <br>
+                        shutdowncritical)
+                        <br>
+                        logger -t upssched-cmd "UPS on battery critical, forced shutdown"
+                        <br>
+                        /usr/sbin/upsmon -c fsd
+                        <br>
+                        ;;
+                        <br>
+                        upsgone)
+                        <br>
+                        logger -t upssched-cmd "UPS has been gone too long, can't reach"
+                        <br>
+                        ;;
+                        <br>
+                        *)
+                        <br>
+                        logger -t upssched-cmd "Unrecognized command: $1"
+                        <br>
+                        ;;
+                        <br>
+                        esac
+                    </div>
+                </ul>
+
+                <h3>Threshold Customization</h3>
+                <p>The default UPS battery thresholds were changed via the <code>upsrw</code> command to enhance
+                    reliability:</p>
+                <ul>
+                    <li><strong>Minimum Runtime:</strong> Set to 10 minutes (600 seconds).</li>
+                    <div class="code-snippet">
+
+                        > upsrw -s battery.runtime.low=600 apc@localhost
+
+                    </div>
+                    <li><strong>Low Charge:</strong> Set to 50%.</li>
+                    <div class="code-snippet">
+
+                        > upsrw -s battery.charge.low=50 apc@localhost
+
+                    </div>
+                </ul>
+
+                <h3>Monitoring Integration (Homebridge)</h3>
+                <ul>
+                    <li>A Homebridge LXC container was installed on PVE.</li>
+                    <div class="code-snippet">
+                        > bash -c "$(wget -qLO -
+                        https://github.com/community-scripts/ProxmoxVE/raw/main/ct/homebridge.sh)"
+                    </div>
+                    <li>The Homebridge NUT plugin was installed and pointed to the NUT server's IP address, providing
+                        constant power status updates into Apple Home via a HomePod mini hub. If the UPS goes on
+                        battery,
+                        Apple Home will notify me.</li>
+                </ul>
+            </div>
+
+            <div class="navigation-buttons">
+                <a href="system.html" class="btn-back">Back to System Design</a>
+                <a href="backups.html" class="btn-next-milestone">Backups</a>
+            </div>
+        </section>
+    </main>
+
+    <footer>
+        <p>&copy; 2025 Joseph Broda</p>
+    </footer>
+</body>
+
+</html>

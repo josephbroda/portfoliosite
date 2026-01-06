@@ -203,21 +203,22 @@
 
         <section class="project-details">
             <div class="content-block">
-                <h2>Hardware Procurement & Justification</h2>
+                <h2>Hardware Procurement</h2>
                 <table>
                     <thead>
                         <tr>
                             <th style="width: 20%;">Component</th>
                             <th style="width: 30%;">Specification</th>
-                            <th style="width: 50%;">Rationale & Skill Demonstrated</th>
+                            <th style="width: 50%;">Rationale</th>
                         </tr>
                     </thead>
                     <tbody>
                         <tr>
-                            <td>Compute</td>
+                            <td>Processor</td>
                             <td>AMD Ryzen 9 3950X (16-core)</td>
                             <td>Utilized existing hardware, providing high thread count ideal for virtualization.
-                                Performance Boost Overdrive (PBO) was disabled to manage thermals and power consumption.
+                                Performance Boost Overdrive (PBO) was disabled. My workload doesn't require higher burst
+                                frequencies so disabling it helps manage thermals and power consumption.
                             </td>
                         </tr>
                         <tr>
@@ -239,6 +240,12 @@
                                 option in the realm of higher end SSDs.</td>
                         </tr>
                         <tr>
+                            <td>Backup Storage</td>
+                            <td>2x 4TB Seagate IronWolf HDDs</td>
+                            <td>Dedicated storage for Proxmox Backup Server (PBS) to ensure data redundancy and
+                                long-term retention.</td>
+                        </tr>
+                        <tr>
                             <td>PVE Boot Drive</td>
                             <td>256GB Patriot NVMe SSD</td>
                             <td>Selected a name-brand boot drive without overspending.</td>
@@ -252,16 +259,15 @@
                         </tr>
                         <tr>
                             <td>Power Supply</td>
-                            <td>Corsair CX650M</td>
-                            <td>A solid balance between power rating, efficiency, and cost. The Corsair CX line is
-                                admittedly from their budget line, but I have had a great experience with Corsair CX
-                                units for over a decade and it was on sale.</td>
+                            <td>Seasonic Focus GX 850W</td>
+                            <td>Legendary 10 year warranty, 80+ Gold certification, and 850W power rating to support my
+                                storage devices and potentially a GPU for future AI use.</td>
                         </tr>
                         <tr>
                             <td>Graphics</td>
                             <td>NVIDIA GeForce GT 710</td>
                             <td>Required for POST and remote management. Highly available on the used market and
-                                extrmely cheap and low power</td>
+                                extrmely cheap.</td>
                         </tr>
                         <tr>
                             <td>UPS</td>
@@ -332,8 +338,12 @@
 
             <div class="content-block">
                 <h2>High-Availability Storage Design (ZFS)</h2>
-                <p><strong>RAIDZ1 Pool:</strong> A RAIDZ1 array was created across the three NAS SATA SSDs.</p>
-                <p><strong>Alignment:</strong> ZFS block alignment was manually set to <code>ashift=12</code> for I/O
+                <p><strong>RAIDZ1 Pool:</strong> A RAIDZ1 array was created across the three NAS SATA SSDs. RAIDZ1 was
+                    chosen for its balance of usable space and redundancy. While parity calculations do weaken
+                    performance, my use case is not performance-critical and higher capacity is preferred. My CPU is
+                    powerful enough to handle the
+                    additional load.</p>
+                <p><strong>Alignment:</strong> ZFS block alignment was set to <code>ashift=12</code> for I/O
                     optimization.</p>
                 <p><strong>Capacity:</strong> The total available space after formatting was 1.75TB.</p>
                 <div class="screenshot-placeholder">
