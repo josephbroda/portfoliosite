@@ -262,7 +262,7 @@
                             installed with the ATX extension to manage power.</li>
                         <li><strong>Access Troubleshooting:</strong> An initial issue was encountered where the HDMI
                             display
-                            was detected but not visible in Safari. After messing with various content blocker and
+                            was detected but not visible in Safari. After troubleshooting various content blocker and
                             privacy
                             settings, I've determined that the issue may be with WebKit itself. This was resolved by
                             pivoting to Chromium-based browsers (e.g., Arc).</li>
@@ -278,11 +278,11 @@
                         <li><strong>Roadblock:</strong> My original plan was to use the JetKVM as a <a
                                 href="https://tailscale.com/kb/1019/subnets#connect-to-tailscale-as-a-subnet-router"
                                 target="_blank">subnet router</a> to
-                            simplify the mamagement of devices on my Tailnet without having to install the Tailscale
+                            simplify the management of devices on my Tailnet without having to install the Tailscale
                             client
                             on each device. However, after some troubleshooting, I found that the sparse BusyBox Linux
                             install JetKVM ships with does not support the necessary routing capabilities. The commands
-                            <code>echo 'net.    ipv4.ip_forward = 1' |  tee -a /etc/sysctl.d/99-tailscale.conf</code>
+                            <code>echo 'net.ipv4.ip_forward = 1' |  tee -a /etc/sysctl.d/99-tailscale.conf</code>
                             and
                             <code>sysctl -p /etc/sysctl.d/99-tailscale.conf</code> returned nothing, signaling that the
                             commands were not supported.
@@ -399,7 +399,7 @@
 
                     <h3>Shutdown Orchestration (upsmon & upssched)</h3>
                     <ul>
-                        <li><code>/etc/nut/upsmon.conf</code> montiors UPS events and status.</li>
+                        <li><code>/etc/nut/upsmon.conf</code> monitors UPS events and status.</li>
                         <div class="code-snippet">
                             RUN_AS_USER root
                             <br>
@@ -427,7 +427,7 @@
                             <br>
                             NOTIFYMSG ONBATT "UPS %s on battery"
                             <br>
-                            NOTIFYMSG LOWBATT "UPS %s battary is low"
+                            NOTIFYMSG LOWBATT "UPS %s battery is low"
                             <br>
                             NOTIFYMSG FSD "UPS %s: forced shutdown in progress"
                             <br>

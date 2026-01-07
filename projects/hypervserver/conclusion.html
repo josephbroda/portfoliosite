@@ -135,7 +135,7 @@
                         benefits. By pivoting to Proxmox VE, I prioritized a robust, platform-agnostic management
                         interface over my initial familiarity with Windows tools. This decision not only resolved the
                         remote management bottlenecks but also broadened my competency in Linux administration and
-                        open-source virtualization standards</li>
+                        open-source virtualization standards.</li>
                     <li><strong>Troubleshooting and The Power of Documentation</strong> Beyond the initial
                         configuration, I found that the Proxmox documentation was an invaluable resource for resolving
                         issues. The community forums and documentation provided clear, step-by-step guides that helped
@@ -149,9 +149,9 @@
                 </ul>
                 <h3>Technical Lessons</h3>
                 <ul>
-                    <li><strong>Systems integration </strong>Learning to bridge different systems, like my UPS
-                        communicating with Linux, which then communicates to HomeKit is the backbone of modern IT.</li>
-                    <li><strong>Hardware passthrough </strong>While simple, my backup server disk passthrough is a
+                    <li><strong>Systems Integration: </strong>Learning to bridge different systems, like my UPS
+                        communicating with Linux, which then communicates to HomeKit, is the backbone of modern IT.</li>
+                    <li><strong>Hardware Passthrough: </strong>While simple, my backup server disk passthrough is a
                         similar concept to passing through other hardware devices, like PCIe cards. Beyond that, my
                         passed through disks allow me to transfer my virtual machine to bare-metal by just simply moving
                         the disks over.</li>
@@ -169,14 +169,15 @@
                         component voltages, that an external IP KVM cannot reach.</li>
                     <li><strong>Dedicated Backup Server:</strong> My only real "regret" is virtualizing the Proxmox
                         Backup Server on the same host it protects. A dedicated, low power PBS host would create a
-                        seperate failure domain. If my Proxmox host were to fail, my backup server would still be
+                        separate failure domain. If my Proxmox host were to fail, my backup server would still be
                         available to restore my virtual machines. This is a risk I'm willing to take for the moment to
                         get my project off the ground, and I plan to address this in the future.
                     </li>
                     <li><strong>Dedicated Network Gateway: </strong>JetKVM's Tailscale integration is spartan due to the
                         lightweight Busybox environment compared to a more traditional GNU Linux distribution. If I were
                         to do a "v2", I'd deploy a Raspberry Pi as a dedicated Tailnet subnet router not install
-                        Tailscale on my servers directly. This simplifies management, as I dont need to have a dedicated
+                        Tailscale on my servers directly. This simplifies management, as I don't need to have a
+                        dedicated
                         jumpbox VM or install Tailscale on every appliance to access them remotely.</li>
                 </ul>
             </div>
@@ -194,7 +195,7 @@
                         sift through years of decentralized forum posts or risking cloud-hosted AI web
                         crawlers providing me false data due to a sarcastic forum post it found.</li>
                     <li><strong>Cybersecurity & Digital Forensics Environment: </strong>Build isolated sandboxed
-                        environments to learn about cyberscurity and DFIR concepts while I complete my university
+                        environments to learn about cybersecurity and DFIR concepts while I complete my university
                         coursework. I can also spin up containers and VMs to experiment with different tools within my
                         Windows labs.</li>
                 </ul>
@@ -209,7 +210,7 @@
                     strategic problem-solving: from ensuring data integrity through ZFS RAIDZ1 to achieving near 100%
                     management uptime with a secure Out-of-Band solution. Ultimately, this server provides the robust,
                     high-performance foundation I need to master complex environments as I continue my journey into IT
-                    administration and cybersecurity</p>
+                    administration and cybersecurity.</p>
             </div>
             <div class="next-button-container">
                 <a href="summary.html" class="btn-back">Back to Summary</a>
