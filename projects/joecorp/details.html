@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -167,6 +168,7 @@
         }
     </style>
 </head>
+
 <body>
     <nav class="nav-bar">
         <div class="nav-container">
@@ -174,7 +176,7 @@
             <ul class="nav-links">
                 <li><a href="../../index.html">Home</a></li>
                 <li><a href="../../projects.html" class="active">Projects</a></li>
-              <!--  <li><a href="../../resume.html">Resume</a></li> -->
+                <!--  <li><a href="../../resume.html">Resume</a></li> -->
 
             </ul>
         </div>
@@ -197,16 +199,19 @@
             <!-- Step 1 -->
             <div class="content-block">
                 <h2>Step 1: Initial configuration in Sconfig</h2>
-                <p>Upon first boot in Server Core, you're dropped into Sconfig. Change the machine name, ensure activation, check for updates, and reboot. While in Sconfig, make a note of the network adapter index number (option 8) as I will need it for manual IP configuration via PowerShell later.</p>
+                <p>Upon first boot in Server Core, you're dropped into Sconfig. Change the machine name, ensure
+                    activation, check for updates, and reboot. While in Sconfig, make a note of the network adapter
+                    index number (option 8) as I will need it for manual IP configuration via PowerShell later.</p>
 
                 <div class="screenshot-placeholder">
-                    [Add Screenshot Here - Replace this div with: &lt;img src="assets/image.jpg" alt="description" class="project-image"&gt;]
+                    [Add Screenshot Here - Replace this div with: &lt;img src="assets/image.jpg" alt="description"
+                    class="project-image"&gt;]
                 </div>
 
-               <!-- <h3>Notes</h3>
+                <!-- <h3>Notes</h3>
                 <p>Make note of the network adapter index (section 8 in Sconfig) while we're here.</p> -->
 
-                
+
             </div>
 
             <!-- Step 2 -->
@@ -217,7 +222,8 @@
                     [Add Screenshot Here]
                 </div>
 
-                <p>Exit Sconfig (option 15) to go to PowerShell. Use the following commands to set a static IP and DNS server. Since I don't have another DNS server on this network, I'm setting DNS to itself.</p>
+                <p>Exit Sconfig (option 15) to go to PowerShell. Use the following commands to set a static IP and DNS
+                    server. Since I don't have another DNS server on this network, I'm setting DNS to itself.</p>
                 <div class="code-snippet">
                     New-NetIPAddress -InterfaceIndex [index] -IPAddress [static ip] -PrefixLength 24<br>
                     Set-DnsClientServerAddress -InterfaceIndex [index] -ServerAddresses [dns server or master dc]
@@ -225,9 +231,12 @@
                 <div class="key-points">
                     <strong>Notes:</strong>
                     <ul>
-                        <li>Most deployments would allow you to do this step within Sconfig. However, it requires the entry of a Gateway's IP address. Since I'm running a private network and don't a have gateway, network configuration needs to be done manually.</li>
-                        <li>Once the second dc is up, the primary dns should be the secondary dc's ip with the secondary dns being loopback 127.0.0.1, and vice/versa
-</li>
+                        <li>Most deployments would allow you to do this step within Sconfig. However, it requires the
+                            entry of a Gateway's IP address. Since I'm running a private network and don't a have
+                            gateway, network configuration needs to be done manually.</li>
+                        <li>Once the second dc is up, the primary dns should be the secondary dc's ip with the secondary
+                            dns being loopback 127.0.0.1, and vice/versa
+                        </li>
                     </ul>
                 </div>
             </div>
@@ -255,7 +264,7 @@
 
             <!-- Add more content-block divs as needed -->
 
-             <div class="navigation-buttons">
+            <div class="navigation-buttons">
                 <a href="summary.html" class="btn-back">Back to Summary</a>
                 <a href="details2.html" class="btn-next-milestone">Redundancy and Replication</a>
             </div>
@@ -263,7 +272,8 @@
     </main>
 
     <footer>
-        <p>&copy; 2025 Joseph Broda</p>
+        <p>&copy; 2026 Joseph Broda</p>
     </footer>
 </body>
+
 </html>
