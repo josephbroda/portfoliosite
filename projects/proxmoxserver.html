@@ -51,7 +51,7 @@
             <div class="section-card">
                 <h2>System Design and Constraints</h2>
                 <p>Rather than purchasing used enterprise hardware, I focused on maximizing performance per dollar while
-                    ensuring reliability.</p>
+                    implementing enterprise-like reliability and management features.</p>
                 <ul>
                     <li><strong>CPU: </strong>AMD Ryzen 9 3950X. High core count for virtualization with acceptable
                         power consumption and heat output. Required no additional investment, as it was already obtained
@@ -65,9 +65,9 @@
                             <li>2x 4TB HDDs in ZFS mirror dedicated to backup storage</li>
                         </ul>
                     </li>
-                    <li><strong>UPS: </strong>APC Back-UPS series for affordability and strong community support</li>
+                    <li><strong>UPS: </strong>APC Back-UPS series for affordability and strong community support.</li>
                     <li><strong>Out-of-Band Management: </strong>JetKVM and Tailscale for remote access and
-                        troubleshooting</li>
+                        troubleshooting.</li>
                 </ul>
             </div>
             <!--TODO: architecture diagram-->
@@ -76,15 +76,16 @@
                 <p>This project was originally scoped around Hyper-V Server.</p>
                 <br>
                 <p>In practice, running Hyper-V in a workgroup environment introduced persistent friction. Windows Admin
-                    Center required domain services for meaningful management, or unreliable WinRM and CredSSP
-                    workarounds. That proved brittle from macOS clients and inconvenient for off-site management.</p>
+                    Center required domain services for meaningful management and MMC required unreliable WinRM and
+                    CredSSP workarounds. That proved to be a chore for macOS clients and inconvenient for off-site
+                    management.</p>
                 <br>
                 <p>Proxmox VE offered:</p>
                 <ul>
                     <li>Platform-agnostic management infrastructure</li>
                     <li>First-class ZFS support</li>
                     <li>Robust backup tooling</li>
-                    <li>A strong documentation and communication ecosystem</li>
+                    <li>A strong documentation and community ecosystem</li>
                 </ul>
                 <br>
                 <p>Switching platforms reduced administrative overhead and enabled a more appliance-like server model.
