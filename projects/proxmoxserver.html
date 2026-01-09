@@ -35,7 +35,7 @@
                 <br>
                 <p>Running a lab on my primary desktop created constant tradeoffs. Spinning up multiple VMs required
                     shutting down other applications, restarting VMs between sessions discouraged long-running projects,
-                    and keeping a high-performance desktop powered in 24/7 introduced heat, noise, and power concerns
+                    and keeping a high-performance desktop powered on 24/7 introduced heat, noise, and power concerns
                     that were impractical in a dorm environment.</p>
                 <br>
                 <p>I set out to build a dedicated, always-on virtualization server that could host labs continuously,
@@ -61,7 +61,7 @@
                         with ZFS.</li>
                     <li><strong>Storage: </strong>
                         <ul>
-                            <li>2x NVMe SSDs for boot drives. One for Proxmox VE , one for Proxmox Backup Server</li>
+                            <li>2x NVMe SSDs for boot drives. One for Proxmox VE, one for Proxmox Backup Server</li>
                             <li>3x 1 TB NAS-rated SATA SSDs in RAIDZ1 for VM storage</li>
                             <li>2x 4TB HDDs in ZFS mirror dedicated to backup storage</li>
                         </ul>
@@ -91,30 +91,24 @@
                 <p>Switching platforms reduced administrative overhead and enabled a more appliance-like server model.
                 </p>
                 <h3>Installer Compatibility Issue</h3>
-                <p>During initial deployment, the graphical Proxmox installer kernel panicked due to a known NVIDIA
-                    driver compatibility issue. As the GT 710 GPU is only necessary for UEFI access, I completed
-                    installation in text mode using a documented workaround.</p>
+                <p>During initial deployment, the graphical Proxmox installer failed during early driver initialization
+                    due to a known NVIDIA compatibility issue. Installation was completed in text mode using a
+                    <a href="https://pve.proxmox.com/pve-docs/pve-admin-guide.html#nomodeset_kernel_param"
+                        target="_blank">documented workaround</a>.
+                </p>
             </div>
             <div class="section-card">
                 <h2>Storage Architecture and Data Integrity</h2>
                 <p>Virtual machine storage is hosted on a ZFS RAIDZ1 pool backed by NAS-grade SSDs.</p>
                 <br>
-                <p>This configuration was chosen to balance:</p>
-                <ul>
-                    <li>Fault tolerance. Single-disk failure protection</li>
-                    <li>Cost and capacity efficiency</li>
-                    <li>Acceptable performance for lab workloads</li>
-                </ul>
-                <br>
-                <p>While RAIDZ1 carries a single-disk failure risk, ECC memory and ZFS's checksumming provide mitigates
-                    many of the practical integrity and performance concerns at this scale.</p>
+                <p>RAIDZ1 was selected to balance cost, storage efficiency, and acceptable performance for lab
+                    workloads. Given the relatively small pool size, ECC memory, and regular ZFS scrubbing, this
+                    tradeoff was considered appropriate for the system’s intended use.</p>
                 <br>
                 <p>Snapshots are used heavily for experimentation and rollback during lab work.</p>
             </div>
             <div class="section-card">
                 <h2>Backup Strategy and Recovery</h2>
-                <p>Backups were non-negotiable for this project.</p>
-                <br>
                 <p>Rather than relying solely on Proxmox's built-in backup tooling, I deployed Proxmox Backup Server as
                     a VM
                     with a dedicated storage pool. The OS and backup disks are passed directly
@@ -186,11 +180,11 @@
             <div class="section-card">
                 <h2>What I Learned</h2>
                 <p>This project reinforced that technical success often comes from choosing the path with the least
-                    long-term friction, not the one that looks best on paper.</p>
+                    long-term friction, not the one that looks best on paper or easiest to get running.</p>
                 <br>
                 <p>Pivoting away from an all-Windows stack improved reliability and manageability, even though it
-                    required deeper linux administration. Documentation, community knowledge, and troubleshooting skills
-                    proved more valuable than memorizing commands.</p>
+                    required deeper Linux administration and research. Documentation, community knowledge, and
+                    troubleshooting skills were invaluable.</p>
                 <br>
                 <p>Most importantly, I learned that failure is a natural part of the learning process, and that it's
                     important to be willing to pivot and try new things.</p>
@@ -199,11 +193,11 @@
                 <h2>What I'd Do Differently</h2>
                 <ul>
                     <li><strong>Native IPMI: </strong>A motherboard with built-in BMC would simplify telemetry and
-                        reduce reliance on external hardware</li>
+                        reduce reliance on external hardware.</li>
                     <li><strong>Simplified Remote Network Access: </strong>A dedicated Tailscale subnet router would
-                        reduce per-host configuration overhead</li>
-                    <li><strong>Dedicated Backup Server: </strong>My one true regret. Separating PBS onto a low-power
-                        system would remove the shared failure domain.</li>
+                        reduce per-host configuration overhead.</li>
+                    <li><strong>Dedicated Backup Server: </strong>My one true regret. Separating PBS onto a dedicated,
+                        low-power system would remove the shared failure domain.</li>
                 </ul>
             </div>
             <div class="section-card">
