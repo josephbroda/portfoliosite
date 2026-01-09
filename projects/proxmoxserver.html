@@ -57,7 +57,7 @@
                     <li><strong>CPU: </strong>AMD Ryzen 9 3950X. High core count for virtualization with acceptable
                         power consumption and heat output. Required no additional investment, as it was already obtained
                         for a prior project.</li>
-                    <li><strong>RAM: </strong>64 GB ECC DDR4. Chosen explicitly to reduce silent data corrpution risk
+                    <li><strong>RAM: </strong>64 GB ECC DDR4. Chosen explicitly to reduce silent data corruption risk
                         with ZFS.</li>
                     <li><strong>Storage: </strong>
                         <ul>
@@ -78,7 +78,7 @@
                 <br>
                 <p>In practice, running Hyper-V in a workgroup environment introduced persistent friction. Windows Admin
                     Center required domain services for meaningful management, or unreliable WinRM and CredSSP
-                    workarounds. That proved brittle from macOS clients and inconvinient for off-site management.</p>
+                    workarounds. That proved brittle from macOS clients and inconvenient for off-site management.</p>
                 <br>
                 <p>Proxmox VE offered:</p>
                 <ul>
@@ -88,7 +88,7 @@
                     <li>A strong documentation and communication ecosystem</li>
                 </ul>
                 <br>
-                <p>Switching platforms reduced administrative overhead and enabled a more applicance-like server model.
+                <p>Switching platforms reduced administrative overhead and enabled a more appliance-like server model.
                 </p>
                 <h3>Installer Compatibility Issue</h3>
                 <p>During initial deployment, the graphical Proxmox installer kernel panicked due to a known NVIDIA
@@ -107,9 +107,9 @@
                 </ul>
                 <br>
                 <p>While RAIDZ1 carries a single-disk failure risk, ECC memory and ZFS's checksumming provide mitigates
-                    many of the practical integroty and performance concerns at this scale.</p>
+                    many of the practical integrity and performance concerns at this scale.</p>
                 <br>
-                <p>Snapshots are used heaviliy for experimentation and rollback during lab work.</p>
+                <p>Snapshots are used heavily for experimentation and rollback during lab work.</p>
             </div>
             <div class="section-card">
                 <h2>Backup Strategy and Recovery</h2>
@@ -152,10 +152,10 @@
             </div>
             <div class="section-card">
                 <h2>Power Management and Graceful Shutdown</h2>
-                <p>As this server is hosted remotely, power loss was one of the most important faulure modes to handle
+                <p>As this server is hosted remotely, power loss was one of the most important failure modes to handle
                     correctly.</p>
                 <br>
-                <p>Using Network UPS Tools in a server-client configuration, the UPS commiunicates with the Proxmox host
+                <p>Using Network UPS Tools in a server-client configuration, the UPS communicates with the Proxmox host
                     and signals an orderly shutdown sequence during extended outages.</p>
                 <h3>Integration Challenge</h3>
                 <p>Initial NUT configuration failed due to USB device permission and service ownership issues. Community
@@ -169,7 +169,7 @@
                     <li>The host powers off last, protecting ZFS integrity</li>
                 </ul>
                 <br>
-                <p>Shutdown timing and battery thresholds were tuned based on observed runtime eather than defaults.</p>
+                <p>Shutdown timing and battery thresholds were tuned based on observed runtime rather than defaults.</p>
                 <br>
                 <p>UPS status is also surfaced through HomeKit via a Homebridge container, providing at-a-glance
                     visibility into power state.</p>
