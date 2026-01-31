@@ -1,0 +1,137 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>JoeCorp - Initial Deployment</title>
+    <link rel="stylesheet" href="../../styles.css">
+
+</head>
+
+<body>
+    <nav class="nav-bar">
+        <div class="nav-container">
+            <a href="../index.html" class="nav-logo">Portfolio</a>
+            <ul class="nav-links">
+                <li><a href="../../index.html">Home</a></li>
+                <li><a href="../../projects.html" class="active">Projects</a></li>
+                <!--     <li><a href="../../resume.html">Resume</a></li> -->
+            </ul>
+        </div>
+    </nav>
+
+    <main>
+        <section class="projects-header">
+            <h1>JoeCorp - Initial Deployment</h1>
+            <p>A self-guided exploration into on-premises Windows administration.</p>
+        </section>
+
+        <section class="project-details">
+            <div class="section-card">
+                <h2>Overview</h2>
+                <p>For as long as I've been interested in IT, Active Directory has fascinated me. I wanted to understand
+                    how a single login can manage an entire organization's worth of permissions, folders, and security
+                    policies. To do that, I built 'JoeCorp': a fully virtualized enterprise environment. I wanted to
+                    build a functional environment where I could break, fix, and learn on-prem Windows administration.
+                </p>
+                <br>
+                <p>This is the foundation for many projects built upon this initial deployment. This post details
+                    deploying the initial infrastructure and Active Directory domain.</p>
+            </div>
+            <div class="section-card">
+                <h2>Architecture</h2>
+                <ul>
+                    <li><strong>Networking: </strong> pfSense acts as a DHCP server and router for the environment.</li>
+                    <li><strong>Domain Controllers: </strong>Two Windows Server 2025 Core VMs (DC01 and DC02). I wanted
+                        to move away
+                        from GUI dependence and dip my toes into PowerShell. This also mirrors production environment
+                        best practices. </li>
+                    <li><strong>File Server: </strong>SRV01 acts as the heart of JoeCorp's data, handling mapped shared
+                        storage, roaming profiles, and home folder redirection for users.</li>
+                    <li><strong>Admin Workstation: </strong>A dedicated Windows 11 VM, with access limited to
+                        users in the 'Admins' group, has RSAT installed to keep management tools separate from the
+                        "standard" user experience.</li>
+                    <li><strong>Domain Clients: </strong>Three Windows 11 VMs to explore user experience and group
+                        policies. </li>
+                </ul>
+            </div>
+            <div class="section-card">
+                <h2>Friction: The Half-Promoted DC</h2>
+                <p>One of the biggest learning experiences starting this project was a total failure during the
+                    promotion of DC02. A DNS misconfiguration on pfSense made DC02 hang during the promotion process. My
+                    initial troubleshooting attempts to fix the main DNS issue (manually setting the DNS server to DC01
+                    in the pfSense console) and re-running the promotion command were fruitless. AD Users and Computers
+                    would see DC02 as a "computer", but not a domain controller, thus being unable to replicate the
+                    forest and finish promotion.</p>
+                <br>
+                <ul>
+                    <li><strong>The Fix: </strong>Instead of wiping the VM and starting from scratch, I performed a
+                        manual metadata cleanup within Users and Computers, Sites and Services, and DNS Manager. I then
+                        joined DC02 as a member first before promotion.</li>
+                    <li><strong>The Lesson: </strong>This taught me that in AD, there will often be more than one entry
+                        for a single object in different locations. Joining a server as a member first to verify the
+                        plumbing (DNS and connectivity) before promotion is a good way to catch issues early.</li>
+                </ul>
+            </div>
+            <div class="section-card">
+                <h2>Group Policy</h2>
+                <p>The real fun started with Group Policy. I've always wanted to see how deep the rabbit hole goes with
+                    locking down systems and user accounts and what could be done with it. I used dedicated security
+                    groups for specific types of policies to ease management. Employees, Admins, and IT staff each have
+                    their own groups to enforce different policies, along with more specialized groups for specific
+                    permissions.</p>
+                <br>
+                <p>The GPOs I implemented include:</p>
+                <ul>
+                    <li>Folder Redirection - Scoped to a 'HomeDrive' security group, this redirects member users'
+                        Documents, Desktop, Downloads folders to auto-created network shares on SRV01.</li>
+                    <li>Mapped Drive - Auto maps a 'Data' network share to all users on login.</li>
+                    <li>Wallpaper - Sets a special wallpaper for members of the 'Employee' group.</li>
+                    <li>Lockdown - Scoped to Employees, this disables administrative tools, access to the control panel,
+                        and even the C:\ drive to enforce usage of their shared network folders.</li>
+                    <li>PerfSettings - As my lab is hosted off-site and my dorm network speed isn't the best, I created
+                        this GPO to automatically disable UI features such as "View window contents while dragging" via
+                        the registry for every user to
+                        increase usability on every VM.</li>
+                </ul>
+            </div>
+            <div class="section-card">
+                <h2>Future Roadmap</h2>
+                <p>This is only the beginning for JoeCorp. Now that the foundation is poured, I'm planning to:</p>
+                <ul>
+                    <li>Simulate disasters</li>
+                    <li>Introduce VLANs and segmentation</li>
+                    <li>Experiment with automation, like replacing manual user onboarding with PowerShell scripts and
+                        Excel</li>
+                </ul>
+            </div>
+            <div class="section-card">
+                <h2>What I Learned</h2>
+                <ul>
+                    <li><strong>DNS is king: </strong>If AD is acting up, it's almost always a DNS issue.</li>
+                    <li><strong>Visibility vs. Permission: </strong>When creating my lockdown GPOs, I discovered there
+                        are
+                        two ways to disable access: hiding the tool and disabling the tool. Hiding the tool
+                        doesn't disable the tool, and vice-versa.</li>
+                    <li><strong>Context Matters: </strong>Learning the difference between User configuration and
+                        Computer configuration and how they apply was a major learning experience.</li>
+                </ul>
+            </div>
+            <div class="section-card">
+                <h2>Demonstrated Technologies & Skills</h2>
+                <div>
+                    <span class="tech-tag">Group Policy Management</span>
+                    <span class="tech-tag">Active Directory</span>
+                    <span class="tech-tag">Least Privilege Principles</span>
+                    <span class="tech-tag">Windows Administration</span>
+                </div>
+            </div>
+        </section>
+    </main>
+    <footer>
+        <p>&copy; 2026 Joseph Broda</p>
+    </footer>
+</body>
+
+</html>
