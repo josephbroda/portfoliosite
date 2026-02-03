@@ -36,7 +36,7 @@
                     build a functional environment where I could break, fix, and learn on-prem Windows administration.
                 </p>
                 <br>
-                <p>This is the foundation for many projects built upon this initial deployment. This post details
+                <p>This is the foundation for many projects built upon this infrastructure. This post details
                     deploying the initial infrastructure and Active Directory domain.</p>
             </div>
             <div class="section-card">
@@ -119,6 +119,12 @@
                         doesn't disable the tool, and vice-versa.</li>
                     <li><strong>Context Matters: </strong>Learning the difference between User configuration and
                         Computer configuration and how they apply was a major learning experience.</li>
+                    <li><strong>Necessary Compromise: </strong>I originally planned to keep
+                        this lab completely airgapped. However, I discovered that without periodic synchronization with
+                        a validated time server, the lab would fall apart if I needed to restore a VM from a snapshot
+                        due to clock drift. By allowing outbound connections to only <code>time.windows.com</code>, I
+                        was able to maintain the integrity of the lab while still having access to a reliable time
+                        source.</li>
                 </ul>
             </div>
             <div class="section-card">
