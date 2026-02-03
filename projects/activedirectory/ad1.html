@@ -46,9 +46,8 @@
                         also
                         functioning as a firewall to allow NTP traffic for time synchronization while maintaining an
                         airgapped lab environment.</li>
-                    <li><strong>Domain Controllers: </strong>Two Windows Server 2025 Core VMs (DC01 and DC02). I wanted
-                        to move away
-                        from GUI dependence and dip my toes into PowerShell. This also mirrors production environment
+                    <li><strong>Domain Controllers: </strong>Two Windows Server 2025 Core VMs (DC01 and DC02). Core
+                        reduces attack surface and resource usage while also mirroring production environment
                         best practices. </li>
                     <li><strong>File Server: </strong>SRV01 acts as the heart of JoeCorp's data, handling mapped shared
                         storage, roaming profiles, and home folder redirection for users.</li>
@@ -70,7 +69,7 @@
                 <br>
                 <ul>
                     <li><strong>The Fix: </strong>Instead of wiping the VM and starting from scratch, I performed a
-                        manual metadata cleanup within Users and Computers, Sites and Services, and DNS Manager. I then
+                        metadata cleanup within Users and Computers, Sites and Services, and DNS Manager. I then
                         joined DC02 as a member first before promotion.</li>
                     <li><strong>The Lesson: </strong>This taught me that in AD, there will often be more than one entry
                         for a single object in different locations. Joining a server as a member first to verify the
@@ -98,6 +97,8 @@
                         the registry for every user to
                         increase usability on every VM.</li>
                 </ul>
+                <br>
+                <p>The full GPO report can be found <a href="gporeport.html">here</a>.</p>
             </div>
             <div class="section-card">
                 <h2>Future Roadmap</h2>
