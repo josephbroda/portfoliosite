@@ -42,7 +42,10 @@
             <div class="section-card">
                 <h2>Architecture</h2>
                 <ul>
-                    <li><strong>Networking: </strong> pfSense acts as a DHCP server and router for the environment.</li>
+                    <li><strong>Networking: </strong>pfSense acts as a DHCP server and router for the environment. It's
+                        also
+                        functioning as a firewall to allow NTP traffic for time synchronization while maintaining an
+                        airgapped lab environment.</li>
                     <li><strong>Domain Controllers: </strong>Two Windows Server 2025 Core VMs (DC01 and DC02). I wanted
                         to move away
                         from GUI dependence and dip my toes into PowerShell. This also mirrors production environment
