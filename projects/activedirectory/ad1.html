@@ -62,8 +62,8 @@
                 <h2>Friction: The Half-Promoted DC</h2>
                 <p>One of the biggest learning experiences starting this project was a total failure during the
                     promotion of DC02. A DNS misconfiguration on pfSense made DC02 hang during the promotion process. My
-                    initial troubleshooting attempts to fix the main DNS issue (manually setting the DNS server to DC01
-                    in the pfSense console) and re-running the promotion command were fruitless. AD Users and Computers
+                    initial troubleshooting attempts to fix the main DNS issue, manually setting the DNS server to DC01
+                    in the pfSense console, and re-running the promotion command were fruitless. AD Users and Computers
                     would see DC02 as a "computer", but not a domain controller, thus being unable to replicate the
                     forest and finish promotion.</p>
                 <br>
@@ -71,7 +71,8 @@
                     <li><strong>The Fix: </strong>Instead of wiping the VM and starting from scratch, I performed a
                         metadata cleanup within Users and Computers, Sites and Services, DNS Manager, and
                         <code>ntdsutil</code>. I then
-                        joined DC02 as a member first before promotion.</li>
+                        joined DC02 as a member first before promotion.
+                    </li>
                     <li><strong>The Lesson: </strong>This taught me that in AD, there will often be more than one entry
                         for a single object in different locations. Joining a server as a member first to verify the
                         plumbing (DNS and connectivity) before promotion is a good way to catch issues early.</li>
